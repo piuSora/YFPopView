@@ -5,9 +5,9 @@
 ![img](https://github.com/piuSora/YFPopView/blob/master/DisplayGif.gif)
 
 ### 使用
-1 将下载的Demo中YFPopView文件夹拖动到项目中
-2 新建自定义view(xib/code都可以)继承自YFPopView
-3 在需要弹窗的地方执行以下代码
+1 将下载的Demo中YFPopView文件夹拖动到项目中  
+2 新建自定义view(xib/code都可以)继承自YFPopView  
+3 在需要弹窗的地方执行以下代码  
 ```
     // code
     PopCustomView *yourView = [[PopCustomView alloc] init];
