@@ -25,6 +25,9 @@ Pod::Spec.new do |s|
   #   * Write the description between the DESC delimiters below.
   #   * Finally, don't worry about the indent, CocoaPods strips it!
   s.description  = <<-DESC
+  An Easy To Use Pop-up View Compoenment
+  1.Multiple animation support
+  2.Support both Xib and Code
                    DESC
 
   s.homepage     = "https://github.com/piuSora/YFPopView"
@@ -64,7 +67,7 @@ Pod::Spec.new do |s|
   #
 
   # s.platform     = :ios
-  # s.platform     = :ios, "5.0"
+  s.platform     = :ios, "8.0"
 
   #  When using multiple platforms
   # s.ios.deployment_target = "5.0"
@@ -90,7 +93,7 @@ Pod::Spec.new do |s|
   #  Not including the public_header_files will make all headers public.
   #
 
-  s.source_files  = "/YFDemo/YFDemo/YFPopView/*"
+  s.source_files  = "YFDemo/YFDemo/YFPopView/*"
 
   # s.public_header_files = "Classes/**/*.h"
 
