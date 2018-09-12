@@ -8,7 +8,7 @@
 
 #### Pod  
 将
-`pod 'YFPopView', '~> 1.0.2'`
+`pod 'YFPopView', '~> 1.0.3'`
 添加到podfile中并执行pod install
 #### 手动集成  
 将下载的Demo中YFPopView文件夹拖到项目中 
