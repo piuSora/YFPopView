@@ -6,14 +6,14 @@
 //
 #import <UIKit/UIKit.h>
 
-typedef enum : NSUInteger {
+typedef NS_ENUM(NSUInteger, YFPopViewAnimationStyle) {
     YFPopViewAnimationStyleTopToBottom = 0,//从上之下 *默认
     YFPopViewAnimationStyleBottomToTop,
     YFPopViewAnimationStyleLeftToRight,
     YFPopViewAnimationStyleRightToLeft,
     YFPopViewAnimationStyleFade,//淡入淡出
     YFPopViewAnimationStyleScale,//缩放
-} YFPopViewAnimationStyle;
+};
 
 @interface YFPopView : UIView
 
@@ -24,6 +24,13 @@ typedef enum : NSUInteger {
  @return 实例化对象
  */
 + (instancetype)instanceViewWithNibName:(NSString *)nibName;
+
+/*!
+ @method
+ @brief code创建的实例化方法
+ @return 实例化对象
+ */
+- (instancetype)init;
 
 /*!
  @method

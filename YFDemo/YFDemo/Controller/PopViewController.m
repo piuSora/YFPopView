@@ -25,7 +25,7 @@
     // code
     PopLabelView *labelView = [[PopLabelView alloc] init];
     // xib
-    PopInputingView *inputingView = [[PopInputingView instanceViewWithNibName:@"PopInputingView"] init];
+    PopInputingView *inputingView = [PopInputingView instanceViewWithNibName:@"PopInputingView"];
     inputingView.animatedView = inputingView.bottomView;
     UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;
     

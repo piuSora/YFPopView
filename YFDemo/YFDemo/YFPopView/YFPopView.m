@@ -21,32 +21,34 @@
 
 + (instancetype )instanceViewWithNibName:(NSString *)nibName{
     NSArray *array = [[NSBundle mainBundle]loadNibNamed:nibName owner:nil options:nil];
-    return array.firstObject;
+    id object = array.firstObject;
+    if (object) {
+        [object loadPopView];
+    }
+    return object;
 }
 
 - (void)awakeFromNib{
     [super awakeFromNib];
 }
 
-- (instancetype)initWithFrame:(CGRect)frame{
-    if (self = [super initWithFrame:frame]) {
-        [self setFrame:frame];
+- (instancetype)init{
+    if (self = [super init]) {
+        [self loadPopView];
     }
     return self;
 }
 
-- (instancetype)init{
-    if (self = [super init]) {
-        [self setFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
-        singleTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(removeSelf)];
-        [self addGestureRecognizer:singleTap];
-        self.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:1.0/3.0];
-        self.adjustedKeyboardEnable = YES;
-        self.duration = 0.3;
-        self.animatedEnable = YES;
-        self.animationStyle = YFPopViewAnimationStyleBottomToTop;
-        singleTap.delegate = self;
-    }
+- (instancetype)loadPopView{
+    [self setFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
+    singleTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(removeSelf)];
+    [self addGestureRecognizer:singleTap];
+    self.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:1.0/3.0];
+    self.adjustedKeyboardEnable = YES;
+    self.duration = 0.3;
+    self.animatedEnable = YES;
+    self.animationStyle = YFPopViewAnimationStyleBottomToTop;
+    singleTap.delegate = self;
     return self;
 }
 
