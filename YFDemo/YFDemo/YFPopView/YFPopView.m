@@ -9,11 +9,11 @@
 @interface YFPopView ()<UIGestureRecognizerDelegate>
 {
     CGRect subViewFrame;
-    UITapGestureRecognizer *singleTap;
     
     CGRect startFrame;
     CGRect endFrame;
 }
+@property (nonatomic, strong) UITapGestureRecognizer  *singleTap;
 
 @end
 
@@ -41,14 +41,12 @@
 
 - (instancetype)loadPopView{
     [self setFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
-    singleTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(removeSelf)];
-    [self addGestureRecognizer:singleTap];
+    [self addGestureRecognizer:self.singleTap];
     self.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:1.0/3.0];
     self.adjustedKeyboardEnable = YES;
     self.duration = 0.3;
     self.animatedEnable = YES;
     self.animationStyle = YFPopViewAnimationStyleBottomToTop;
-    singleTap.delegate = self;
     return self;
 }
 
@@ -97,6 +95,9 @@
 
 - (void)showPopViewOn:(UIView *)view{
     [view addSubview:self];
+    if (![self.gestureRecognizers containsObject:self.singleTap]) {
+        [self addGestureRecognizer:self.singleTap];
+    }
     if (self.adjustedKeyboardEnable) {
         //注册键盘监听
         [self registerForKeyboardNotifications];
@@ -108,7 +109,7 @@
 
 - (void)removeSelf{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [self removeGestureRecognizer:singleTap];
+    [self removeGestureRecognizer:self.singleTap];
     [self removeSelfWithAnimated:self.animatedEnable];
 }
 
@@ -239,6 +240,15 @@
             [self removeFromSuperview];
         }];
     }
+}
+
+#pragma mark - setter & getter
+- (UITapGestureRecognizer *)singleTap{
+    if (!_singleTap) {
+        _singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(removeSelf)];
+        _singleTap.delegate = self;
+    }
+    return _singleTap;
 }
 
 @end
