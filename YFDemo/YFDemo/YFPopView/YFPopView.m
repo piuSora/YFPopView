@@ -13,6 +13,7 @@
     
     CGRect startFrame;
     CGRect endFrame;
+    int removeLock;
 }
 @property (nonatomic, strong) UITapGestureRecognizer  *singleTap;
 
@@ -41,8 +42,10 @@
 }
 
 - (instancetype)loadPopView{
+    removeLock = 0;
     self.layer.masksToBounds = true;
     superViewFrame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
+    subViewFrame = CGRectZero;
     [self setFrame:superViewFrame];
     [self addGestureRecognizer:self.singleTap];
     self.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:1.0/3.0];
@@ -97,6 +100,7 @@
 #pragma mark - 展示
 
 - (void)showPopViewOn:(UIView *)view{
+    removeLock = 1;
     [view addSubview:self];
     superViewFrame = view.bounds;
     self.frame = superViewFrame;
@@ -113,12 +117,13 @@
 #pragma mark - 移除
 
 - (void)removeSelf{
+    removeLock = 0;
+    if (self.onRemove) {
+        self.onRemove();
+    };
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [self removeGestureRecognizer:self.singleTap];
     [self removeSelfWithAnimated:self.animatedEnable];
-    if (self.onRemove) {
-        self.onRemove();
-    }
 }
 
 - (void)removeSelfWithAnimated:(BOOL)animated{
@@ -134,8 +139,18 @@
         [self executeAnimationIsShowing:NO];
     }
     else{
-        [self removeFromSuperview];
+        [self didRemove];
     }
+}
+
+- (void)didRemove{
+    if (removeLock) {
+        return;
+    }
+    if (self.onDismiss) {
+        self.onDismiss();
+    }
+    [self removeFromSuperview];
 }
 
 #pragma mark - 设置动画
@@ -143,7 +158,9 @@
 - (void)settingSubViewsWithAnimated:(BOOL)animated Duration:(NSTimeInterval)duration{
     if (animated) {
         [self layoutIfNeeded];
-        subViewFrame = self.animatedView.frame;
+        if (CGRectEqualToRect(CGRectZero, subViewFrame)) {
+            subViewFrame = self.animatedView.frame;
+        }
         if (self.animationStyle == YFPopViewAnimationStyleBottomToTop) {
             [self settingSubViewsAnimationFromBottomToTop];
         }
@@ -194,7 +211,7 @@
             [self layoutIfNeeded];
             [self.animatedView setFrame:self->startFrame];
         }completion:^(BOOL finished) {
-            [self removeFromSuperview];
+            [self didRemove];
         }];
     }
     else{
@@ -223,7 +240,7 @@
             [self layoutIfNeeded];
             [self.animatedView setAlpha:0];
         }completion:^(BOOL finished) {
-            [self removeFromSuperview];
+            [self didRemove];
         }];
     }
 }
@@ -245,7 +262,7 @@
             [self layoutIfNeeded];
             self.animatedView.layer.transform = CATransform3DMakeScale(0.001, 0.001, 1);
         }completion:^(BOOL finished) {
-            [self removeFromSuperview];
+            [self didRemove];
         }];
     }
 }

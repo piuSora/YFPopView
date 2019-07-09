@@ -7,9 +7,10 @@
 #import <UIKit/UIKit.h>
 
 typedef void(^OnRemoveBlock)(void);
+typedef void(^OnDismissBlock)(void);
 
 typedef NS_ENUM(NSUInteger, YFPopViewAnimationStyle) {
-    YFPopViewAnimationStyleTopToBottom = 0,//从上之下 *默认
+    YFPopViewAnimationStyleTopToBottom = 0,//从上至下 *默认
     YFPopViewAnimationStyleBottomToTop,
     YFPopViewAnimationStyleLeftToRight,
     YFPopViewAnimationStyleRightToLeft,
@@ -77,6 +78,11 @@ typedef NS_ENUM(NSUInteger, YFPopViewAnimationStyle) {
  remove回调
  */
 @property (nonatomic, strong) OnRemoveBlock onRemove;
+
+/**
+ 消失回调
+ */
+@property (nonatomic, strong) OnDismissBlock onDismiss;
 
 
 @end
