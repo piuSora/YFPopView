@@ -8,6 +8,7 @@
 #import "YFPopView.h"
 @interface YFPopView ()<UIGestureRecognizerDelegate>
 {
+    CGRect superViewFrame;
     CGRect subViewFrame;
     
     CGRect startFrame;
@@ -40,12 +41,14 @@
 }
 
 - (instancetype)loadPopView{
-    [self setFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
+    self.layer.masksToBounds = true;
+    superViewFrame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
+    [self setFrame:superViewFrame];
     [self addGestureRecognizer:self.singleTap];
     self.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:1.0/3.0];
-    self.adjustedKeyboardEnable = YES;
+    self.adjustedKeyboardEnable = false;
     self.duration = 0.3;
-    self.animatedEnable = YES;
+    self.animatedEnable = true;
     self.animationStyle = YFPopViewAnimationStyleBottomToTop;
     return self;
 }
@@ -83,18 +86,20 @@
     CGSize keyboardSize = [value CGRectValue].size;
     
     [UIView animateWithDuration:duration animations:^{
-        self.frame = CGRectMake(self.frame.origin.x, [UIScreen mainScreen].bounds.size.height - keyboardSize.height - self.frame.size.height, self.frame.size.width, self.frame.size.height);
+        self.frame = CGRectMake(self->superViewFrame.origin.x, self->superViewFrame.size.height - keyboardSize.height - self->superViewFrame.size.height, self->superViewFrame.size.width, self->superViewFrame.size.height);
     }];
     
 }
 - (void)keyboardWillBeHidden:(NSNotification*)aNotification{
-    [self setFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
+    [self setFrame:CGRectMake(0, 0, superViewFrame.size.width, self->superViewFrame.size.height)];
 }
 
 #pragma mark - 展示
 
 - (void)showPopViewOn:(UIView *)view{
     [view addSubview:self];
+    superViewFrame = view.bounds;
+    self.frame = superViewFrame;
     if (![self.gestureRecognizers containsObject:self.singleTap]) {
         [self addGestureRecognizer:self.singleTap];
     }
@@ -111,6 +116,9 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [self removeGestureRecognizer:self.singleTap];
     [self removeSelfWithAnimated:self.animatedEnable];
+    if (self.onRemove) {
+        self.onRemove();
+    }
 }
 
 - (void)removeSelfWithAnimated:(BOOL)animated{
@@ -169,11 +177,11 @@
     endFrame = subViewFrame;
 }
 - (void)settingSubViewsAnimationFromRightToLeft{
-    startFrame = CGRectMake([UIScreen mainScreen].bounds.size.width, subViewFrame.origin.y, subViewFrame.size.width, subViewFrame.size.height);
+    startFrame = CGRectMake(superViewFrame.size.width, subViewFrame.origin.y, subViewFrame.size.width, subViewFrame.size.height);
     endFrame = subViewFrame;
 }
 - (void)settingSubViewsAnimationFromBottomToTop{
-    startFrame = CGRectMake(subViewFrame.origin.x, [UIScreen mainScreen].bounds.size.height, subViewFrame.size.width, subViewFrame.size.height);
+    startFrame = CGRectMake(subViewFrame.origin.x, superViewFrame.size.height, subViewFrame.size.width, subViewFrame.size.height);
     endFrame = subViewFrame;
 }
 

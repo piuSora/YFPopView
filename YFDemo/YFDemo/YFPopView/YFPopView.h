@@ -6,6 +6,8 @@
 //
 #import <UIKit/UIKit.h>
 
+typedef void(^OnRemoveBlock)(void);
+
 typedef NS_ENUM(NSUInteger, YFPopViewAnimationStyle) {
     YFPopViewAnimationStyleTopToBottom = 0,//从上之下 *默认
     YFPopViewAnimationStyleBottomToTop,
@@ -57,7 +59,7 @@ typedef NS_ENUM(NSUInteger, YFPopViewAnimationStyle) {
 @property (assign, nonatomic) BOOL animatedEnable;
 
 /**
- 是否开启键盘调整 默认开启
+ 是否开启键盘调整 默认关闭
  */
 @property (assign, nonatomic) BOOL adjustedKeyboardEnable;
 
@@ -71,8 +73,10 @@ typedef NS_ENUM(NSUInteger, YFPopViewAnimationStyle) {
  */
 @property (assign, nonatomic) YFPopViewAnimationStyle animationStyle;
 
-
-
+/**
+ remove回调
+ */
+@property (nonatomic, strong) OnRemoveBlock onRemove;
 
 
 @end
