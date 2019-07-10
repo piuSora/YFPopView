@@ -10,29 +10,17 @@
 {
     CGRect superViewFrame;
     CGRect subViewFrame;
-    
     CGRect startFrame;
     CGRect endFrame;
+    
     int removeLock;
 }
 @property (nonatomic, strong) UITapGestureRecognizer  *singleTap;
+@property (strong, nonatomic) UIView *animatedView;
 
 @end
 
 @implementation YFPopView
-
-+ (instancetype )instanceViewWithNibName:(NSString *)nibName{
-    NSArray *array = [[NSBundle mainBundle]loadNibNamed:nibName owner:nil options:nil];
-    id object = array.firstObject;
-    if (object) {
-        [object loadPopView];
-    }
-    return object;
-}
-
-- (void)awakeFromNib{
-    [super awakeFromNib];
-}
 
 - (instancetype)init{
     if (self = [super init]) {
@@ -41,23 +29,32 @@
     return self;
 }
 
-- (instancetype)loadPopView{
+- (instancetype)initWithFrame:(CGRect)frame{
+    if (self = [super initWithFrame:frame]) {
+        superViewFrame = frame;
+        self.frame = frame;
+        [self loadPopView];
+    }
+    return self;
+}
+
+- (instancetype)initWithSubView:(__kindof UIView *)subView{
+    if (self = [super init]) {
+        [self addSubview:subView];
+        [self loadPopView];
+    }
+    return self;
+}
+
+- (void)loadPopView{
     removeLock = 0;
     self.layer.masksToBounds = true;
-    superViewFrame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
-    subViewFrame = CGRectZero;
-    [self setFrame:superViewFrame];
     [self addGestureRecognizer:self.singleTap];
     self.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:1.0/3.0];
     self.adjustedKeyboardEnable = false;
     self.duration = 0.3;
     self.animatedEnable = true;
     self.animationStyle = YFPopViewAnimationStyleBottomToTop;
-    return self;
-}
-
-- (void)layoutSubviews{
-    [super layoutSubviews];
 }
 
 #pragma mark - UIGestureRecognizerDelegate
@@ -70,18 +67,21 @@
     return  YES;
 }
 
+- (void)addSubview:(UIView *)view{
+    self.animatedView = view;
+    [super addSubview:view];
+}
+
 #pragma mark - 监听键盘
 - (void)registerForKeyboardNotifications{
-    //使用NSNotificationCenter 鍵盤出現時
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWillShown:)
                                                  name:UIKeyboardWillChangeFrameNotification object:nil];
-    //使用NSNotificationCenter 鍵盤隐藏時
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWillBeHidden:)
                                                  name:UIKeyboardWillHideNotification object:nil];
 }
-//实现当键盘出现的时候计算键盘的高度大小
+//键盘出现的时候计算键盘的高度大小
 - (void)keyboardWillShown:(NSNotification*)aNotification{
     NSDictionary *info = [aNotification userInfo];
     CGFloat duration = [[info objectForKey:UIKeyboardAnimationDurationUserInfoKey] floatValue];
@@ -101,8 +101,12 @@
 
 - (void)showPopViewOn:(UIView *)view{
     removeLock = 1;
-    [view addSubview:self];
-    superViewFrame = view.bounds;
+    if (!self.superview) {
+        [view addSubview:self];
+    }
+    if (CGRectEqualToRect(CGRectZero, superViewFrame)) {
+        superViewFrame = view.bounds;
+    }
     self.frame = superViewFrame;
     if (![self.gestureRecognizers containsObject:self.singleTap]) {
         [self addGestureRecognizer:self.singleTap];
@@ -131,14 +135,12 @@
         if (self.animationStyle == YFPopViewAnimationStyleScale) {
             [self executeTransformAnimationIsShowing:NO];
             return;
-        }
-        else if (self.animationStyle == YFPopViewAnimationStyleFade){
+        }else if (self.animationStyle == YFPopViewAnimationStyleFade){
             [self executeFadeAnimationIsShowing:NO];
             return;
         }
         [self executeAnimationIsShowing:NO];
-    }
-    else{
+    }else{
         [self didRemove];
     }
 }
@@ -163,23 +165,16 @@
         }
         if (self.animationStyle == YFPopViewAnimationStyleBottomToTop) {
             [self settingSubViewsAnimationFromBottomToTop];
-        }
-        else if (self.animationStyle == YFPopViewAnimationStyleTopToBottom){
+        }else if (self.animationStyle == YFPopViewAnimationStyleTopToBottom){
             [self settingSubViewsAnimationFromTopToBottom];
-        }
-        else if (self.animationStyle == YFPopViewAnimationStyleRightToLeft){
+        }else if (self.animationStyle == YFPopViewAnimationStyleRightToLeft){
             [self settingSubViewsAnimationFromRightToLeft];
-        }
-        else if (self.animationStyle == YFPopViewAnimationStyleLeftToRight){
+        }else if (self.animationStyle == YFPopViewAnimationStyleLeftToRight){
             [self settingSubViewsAnimationFromLeftToRight];
-        }
-        else if (self.animationStyle == YFPopViewAnimationStyleFade){
-            [self executeFadeAnimationIsShowing:YES];
-            return;
-        }
-        else if (self.animationStyle == YFPopViewAnimationStyleScale){
-            [self executeTransformAnimationIsShowing:YES];
-            return;
+        }else if (self.animationStyle == YFPopViewAnimationStyleFade){
+            [self executeFadeAnimationIsShowing:YES];return;
+        }else if (self.animationStyle == YFPopViewAnimationStyleScale){
+            [self executeTransformAnimationIsShowing:YES];return;
         }
         [self executeAnimationIsShowing:YES];
     }
@@ -213,8 +208,7 @@
         }completion:^(BOOL finished) {
             [self didRemove];
         }];
-    }
-    else{
+    }else{
         [self layoutIfNeeded];
         [self.animatedView setFrame:startFrame];
         [UIView animateWithDuration:self.duration animations:^{
@@ -232,8 +226,7 @@
             [self layoutIfNeeded];
             self.animatedView.alpha = 1;
         }];
-    }
-    else{
+    }else{
         [self layoutIfNeeded];
         [self.animatedView setAlpha:1];
         [UIView animateWithDuration:self.duration animations:^{
@@ -254,8 +247,7 @@
             [self layoutIfNeeded];
             self.animatedView.layer.transform = CATransform3DMakeScale(1, 1, 1);
         }];
-    }
-    else{
+    }else{
         [self layoutIfNeeded];
         self.animatedView.layer.transform = CATransform3DMakeScale(1, 1, 1);
         [UIView animateWithDuration:self.duration animations:^{
@@ -274,6 +266,17 @@
         _singleTap.delegate = self;
     }
     return _singleTap;
+}
+
+@end
+
+#import "YFPopView.h"
+
+@implementation UIView (YFPopView)
+
+- (void)showPopView:(__kindof UIView *)view{
+    YFPopView *popView = [[YFPopView alloc] initWithSubView:view];
+    [popView showPopViewOn:self];
 }
 
 @end

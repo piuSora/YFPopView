@@ -10,17 +10,15 @@
 
 @implementation PopLabelView
 
-- (instancetype)init{
-    if (self = [super init]) {
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(50, 200, [UIScreen mainScreen].bounds.size.width - 100, 100)];
+- (instancetype)initWithFrame:(CGRect)frame{
+    if (self = [super initWithFrame:frame]) {
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, [UIScreen mainScreen].bounds.size.width - 100, 100)];
         label.font = [UIFont systemFontOfSize:16];
         label.text = @"YFPopView";
         label.backgroundColor = [UIColor whiteColor];
         label.textAlignment = NSTextAlignmentCenter;
+        self.backgroundColor = UIColor.orangeColor;
         [self addSubview:label];
-        
-        //核心代码
-        self.animatedView = label;
     }
     return self;
 }

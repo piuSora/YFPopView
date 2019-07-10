@@ -22,18 +22,11 @@ typedef NS_ENUM(NSUInteger, YFPopViewAnimationStyle) {
 
 /*!
  @method
- @brief xib创建的实例化方法
- @param nibName    xib名字
- @return 实例化对象
- */
-+ (instancetype)instanceViewWithNibName:(NSString *)nibName;
-
-/*!
- @method
  @brief code创建的实例化方法
  @return 实例化对象
  */
-- (instancetype)init;
+
+- (instancetype)initWithSubView:(__kindof UIView *)subView;
 
 /*!
  @method
@@ -47,12 +40,6 @@ typedef NS_ENUM(NSUInteger, YFPopViewAnimationStyle) {
  @brief 显示弹窗
  */
 - (void)showPopViewOn:(UIView *)view;
-
-
-/**
- 用于执行动画的view 在创建子类时传入需要执行动画的view
- */
-@property (strong, nonatomic) UIView *animatedView;
 
 /**
  动画效果 默认开启
@@ -74,15 +61,17 @@ typedef NS_ENUM(NSUInteger, YFPopViewAnimationStyle) {
  */
 @property (assign, nonatomic) YFPopViewAnimationStyle animationStyle;
 
-/**
- remove回调
- */
-@property (nonatomic, strong) OnRemoveBlock onRemove;
 
-/**
- 消失回调
- */
+/// remove回调
+@property (nonatomic, strong) OnRemoveBlock onRemove;
+/// 消失回调
 @property (nonatomic, strong) OnDismissBlock onDismiss;
 
+
+@end
+
+@interface UIView (YFPopView)
+
+- (void)showPopView:(__kindof UIView *)view;
 
 @end

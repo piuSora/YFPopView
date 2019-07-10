@@ -15,8 +15,6 @@
 		4C2B7C2E2112944B00DAF29F /* PopViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C2B7C2C2112944B00DAF29F /* PopViewController.xib */; };
 		4C2B7C352112992C00DAF29F /* YFPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2B7C342112992C00DAF29F /* YFPopView.m */; };
 		4C2B7C3D2112A82500DAF29F /* PopLabelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2B7C3C2112A82500DAF29F /* PopLabelView.m */; };
-		4C2B7C402112BA1800DAF29F /* PopInputingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2B7C3F2112BA1800DAF29F /* PopInputingView.m */; };
-		4C2B7C422112D87900DAF29F /* PopInputingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C2B7C412112D87900DAF29F /* PopInputingView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,9 +32,6 @@
 		4C2B7C342112992C00DAF29F /* YFPopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YFPopView.m; sourceTree = "<group>"; };
 		4C2B7C3B2112A82500DAF29F /* PopLabelView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PopLabelView.h; sourceTree = "<group>"; };
 		4C2B7C3C2112A82500DAF29F /* PopLabelView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PopLabelView.m; sourceTree = "<group>"; };
-		4C2B7C3E2112BA1800DAF29F /* PopInputingView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PopInputingView.h; sourceTree = "<group>"; };
-		4C2B7C3F2112BA1800DAF29F /* PopInputingView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PopInputingView.m; sourceTree = "<group>"; };
-		4C2B7C412112D87900DAF29F /* PopInputingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopInputingView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,9 +91,6 @@
 			children = (
 				4C2B7C3B2112A82500DAF29F /* PopLabelView.h */,
 				4C2B7C3C2112A82500DAF29F /* PopLabelView.m */,
-				4C2B7C3E2112BA1800DAF29F /* PopInputingView.h */,
-				4C2B7C3F2112BA1800DAF29F /* PopInputingView.m */,
-				4C2B7C412112D87900DAF29F /* PopInputingView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -170,7 +162,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4C2B7C422112D87900DAF29F /* PopInputingView.xib in Resources */,
 				4C2B7C2E2112944B00DAF29F /* PopViewController.xib in Resources */,
 				4C2B7C1E211293F200DAF29F /* LaunchScreen.storyboard in Resources */,
 				4C2B7C1B211293F200DAF29F /* Assets.xcassets in Resources */,
@@ -186,7 +177,6 @@
 			files = (
 				4C2B7C2D2112944B00DAF29F /* PopViewController.m in Sources */,
 				4C2B7C3D2112A82500DAF29F /* PopLabelView.m in Sources */,
-				4C2B7C402112BA1800DAF29F /* PopInputingView.m in Sources */,
 				4C2B7C21211293F200DAF29F /* main.m in Sources */,
 				4C2B7C13211293F000DAF29F /* AppDelegate.m in Sources */,
 				4C2B7C352112992C00DAF29F /* YFPopView.m in Sources */,

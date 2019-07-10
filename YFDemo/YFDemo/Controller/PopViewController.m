@@ -7,8 +7,8 @@
 //
 
 #import "PopViewController.h"
-#import "PopInputingView.h"
 #import "PopLabelView.h"
+#import "YFPopView.h"
 
 @interface PopViewController ()
 
@@ -22,43 +22,44 @@
 }
 
 - (IBAction)popViewAction:(UIButton *)sender {
-    // code
-    PopLabelView *labelView = [[PopLabelView alloc] init];
-    // xib
-    PopInputingView *inputingView = [PopInputingView instanceViewWithNibName:@"PopInputingView"];
-    inputingView.animatedView = inputingView.bottomView;
+    PopLabelView *labelView = [[PopLabelView alloc] initWithFrame:CGRectMake(40, 200, [UIScreen mainScreen].bounds.size.width - 80, 120)];
+    YFPopView *popView;
+//    YFPopView *popView = [[YFPopView alloc] initWithSubView:labelView];
+//    [popView addSubview:labelView];
+    [self.view showPopView:labelView];
+    return;
     UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;
-    
     switch (sender.tag) {
         case 100:{//top to bottom
-            labelView.animationStyle = YFPopViewAnimationStyleTopToBottom;
-            [labelView showPopViewOn:keyWindow];
+            popView.animationStyle = YFPopViewAnimationStyleTopToBottom;
+            [popView showPopViewOn:keyWindow];
         }
             break;
         case 200:{//bottom to top
-            inputingView.animationStyle = YFPopViewAnimationStyleBottomToTop;
-            [inputingView showPopViewOn:keyWindow];
+            popView.animationStyle = YFPopViewAnimationStyleBottomToTop;
+            [popView showPopViewOn:keyWindow];
         }
             break;
         case 300:{//left to right
-            labelView.animationStyle = YFPopViewAnimationStyleLeftToRight;
-            [labelView showPopViewOn:keyWindow];
+            popView.animationStyle = YFPopViewAnimationStyleLeftToRight;
+            [popView showPopViewOn:keyWindow];
         }
             break;
         case 400:{//right to left
-            labelView.animationStyle = YFPopViewAnimationStyleRightToLeft;
-            [labelView showPopViewOn:keyWindow];
+            popView.animationStyle = YFPopViewAnimationStyleRightToLeft;
+            [popView showPopViewOn:keyWindow];
         }
             break;
         case 500:{//scale
-            labelView.animationStyle = YFPopViewAnimationStyleScale;
-            [labelView showPopViewOn:keyWindow];
+            popView.animationStyle = YFPopViewAnimationStyleScale;
+            [popView showPopViewOn:keyWindow];
         }
             break;
         case 600:{//fade
-            labelView.animationStyle = YFPopViewAnimationStyleFade;
-            [labelView showPopViewOn:keyWindow];
+            popView.animationStyle = YFPopViewAnimationStyleFade;
+            [popView showPopViewOn:keyWindow];
         }
+            break;
         default:
             break;
     }

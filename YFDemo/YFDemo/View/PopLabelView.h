@@ -5,9 +5,8 @@
 //  Created by OS on 2018/8/2.
 //  Copyright © 2018年 Piu. All rights reserved.
 //
+#import <UIKit/UIKit.h>
 
-#import "YFPopView.h"
-
-@interface PopLabelView : YFPopView
+@interface PopLabelView : UIView
 
 @end
