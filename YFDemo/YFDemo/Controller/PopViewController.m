@@ -23,11 +23,7 @@
 
 - (IBAction)popViewAction:(UIButton *)sender {
     PopLabelView *labelView = [[PopLabelView alloc] initWithFrame:CGRectMake(40, 200, [UIScreen mainScreen].bounds.size.width - 80, 120)];
-    YFPopView *popView;
-//    YFPopView *popView = [[YFPopView alloc] initWithSubView:labelView];
-//    [popView addSubview:labelView];
-    [self.view showPopView:labelView];
-    return;
+    YFPopView *popView = [[YFPopView alloc] initWithSubView:labelView];
     UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;
     switch (sender.tag) {
         case 100:{//top to bottom

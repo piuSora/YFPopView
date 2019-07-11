@@ -54,7 +54,7 @@
     self.adjustedKeyboardEnable = false;
     self.duration = 0.3;
     self.animatedEnable = true;
-    self.animationStyle = YFPopViewAnimationStyleBottomToTop;
+    self.animationStyle = YFPopViewAnimationStyleFade;
 }
 
 #pragma mark - UIGestureRecognizerDelegate
@@ -96,11 +96,37 @@
 - (void)keyboardWillBeHidden:(NSNotification*)aNotification{
     [self setFrame:CGRectMake(0, 0, superViewFrame.size.width, self->superViewFrame.size.height)];
 }
+#pragma mark - callback
+
+- (void)willShowCallBack{
+    if (self.willShow) {
+        self.willShow(self);
+    }
+}
+- (void)willDismissCallBack{
+    if (self.willDismiss) {
+        self.willDismiss(self);
+    }
+}
+- (void)didDismissCallBack{
+    if (self.didDismiss) {
+        self.didDismiss(self);
+    }
+}
+- (void)didShowCallBack{
+    if (self.didShow) {
+        self.didShow(self);
+    }
+}
 
 #pragma mark - 展示
 
 - (void)showPopViewOn:(UIView *)view{
     removeLock = 1;
+    [self willShowCallBack];
+    if (self.willShow) {
+        self.willShow(self);
+    }
     if (!self.superview) {
         [view addSubview:self];
     }
@@ -122,9 +148,7 @@
 
 - (void)removeSelf{
     removeLock = 0;
-    if (self.onRemove) {
-        self.onRemove();
-    };
+    [self willDismissCallBack];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [self removeGestureRecognizer:self.singleTap];
     [self removeSelfWithAnimated:self.animatedEnable];
@@ -149,9 +173,7 @@
     if (removeLock) {
         return;
     }
-    if (self.onDismiss) {
-        self.onDismiss();
-    }
+    [self didDismissCallBack];
     [self removeFromSuperview];
 }
 
@@ -164,13 +186,13 @@
             subViewFrame = self.animatedView.frame;
         }
         if (self.animationStyle == YFPopViewAnimationStyleBottomToTop) {
-            [self settingSubViewsAnimationFromBottomToTop];
+            [self prepareAnimationFromBottomToTop];
         }else if (self.animationStyle == YFPopViewAnimationStyleTopToBottom){
-            [self settingSubViewsAnimationFromTopToBottom];
+            [self prepareAnimationFromTopToBottom];
         }else if (self.animationStyle == YFPopViewAnimationStyleRightToLeft){
-            [self settingSubViewsAnimationFromRightToLeft];
+            [self prepareAnimationFromRightToLeft];
         }else if (self.animationStyle == YFPopViewAnimationStyleLeftToRight){
-            [self settingSubViewsAnimationFromLeftToRight];
+            [self prepareAnimationFromLeftToRight];
         }else if (self.animationStyle == YFPopViewAnimationStyleFade){
             [self executeFadeAnimationIsShowing:YES];return;
         }else if (self.animationStyle == YFPopViewAnimationStyleScale){
@@ -180,26 +202,35 @@
     }
 }
 
-- (void)settingSubViewsAnimationFromTopToBottom{
+- (void)prepareAnimationFromTopToBottom{
     startFrame = CGRectMake(subViewFrame.origin.x, -subViewFrame.size.height, subViewFrame.size.width, subViewFrame.size.height);
     endFrame = subViewFrame;
 }
-- (void)settingSubViewsAnimationFromLeftToRight{
+- (void)prepareAnimationFromLeftToRight{
     startFrame = CGRectMake(- subViewFrame.size.width, subViewFrame.origin.y, subViewFrame.size.width, subViewFrame.size.height);
     endFrame = subViewFrame;
 }
-- (void)settingSubViewsAnimationFromRightToLeft{
+- (void)prepareAnimationFromRightToLeft{
     startFrame = CGRectMake(superViewFrame.size.width, subViewFrame.origin.y, subViewFrame.size.width, subViewFrame.size.height);
     endFrame = subViewFrame;
 }
-- (void)settingSubViewsAnimationFromBottomToTop{
+- (void)prepareAnimationFromBottomToTop{
     startFrame = CGRectMake(subViewFrame.origin.x, superViewFrame.size.height, subViewFrame.size.width, subViewFrame.size.height);
     endFrame = subViewFrame;
 }
 
 //线性动画
 - (void)executeAnimationIsShowing:(BOOL)isShowing{
-    if (!isShowing) {
+    if (isShowing) {
+        [self layoutIfNeeded];
+        [self.animatedView setFrame:startFrame];
+        [UIView animateWithDuration:self.duration animations:^{
+            [self layoutIfNeeded];
+            [self.animatedView setFrame:self->endFrame];
+        }completion:^(BOOL finished) {
+            [self didShowCallBack];
+        }];
+    }else{
         [self layoutIfNeeded];
         [self.animatedView setFrame:endFrame];
         [UIView animateWithDuration:self.duration animations:^{
@@ -207,13 +238,6 @@
             [self.animatedView setFrame:self->startFrame];
         }completion:^(BOOL finished) {
             [self didRemove];
-        }];
-    }else{
-        [self layoutIfNeeded];
-        [self.animatedView setFrame:startFrame];
-        [UIView animateWithDuration:self.duration animations:^{
-            [self layoutIfNeeded];
-            [self.animatedView setFrame:self->endFrame];
         }];
     }
 }
@@ -225,6 +249,8 @@
         [UIView animateWithDuration:self.duration animations:^{
             [self layoutIfNeeded];
             self.animatedView.alpha = 1;
+        }completion:^(BOOL finished) {
+            [self didShowCallBack];
         }];
     }else{
         [self layoutIfNeeded];
@@ -246,6 +272,8 @@
         [UIView animateWithDuration:self.duration animations:^{
             [self layoutIfNeeded];
             self.animatedView.layer.transform = CATransform3DMakeScale(1, 1, 1);
+        }completion:^(BOOL finished) {
+            [self didShowCallBack];
         }];
     }else{
         [self layoutIfNeeded];
@@ -272,11 +300,14 @@
 
 #import "YFPopView.h"
 
-@implementation UIView (YFPopView)
+@implementation UIViewController (YFPopView)
 
 - (void)showPopView:(__kindof UIView *)view{
+    CGSize screenSize = UIScreen.mainScreen.bounds.size;
+    CGSize viewSize = view.frame.size;
+    view.frame = (CGRect){.origin = CGPointMake((screenSize.width - viewSize.width)/2.0, (screenSize.height - viewSize.height) / 2.0), .size = view.frame.size};
     YFPopView *popView = [[YFPopView alloc] initWithSubView:view];
-    [popView showPopViewOn:self];
+    [popView showPopViewOn:UIApplication.sharedApplication.keyWindow];
 }
 
 @end
