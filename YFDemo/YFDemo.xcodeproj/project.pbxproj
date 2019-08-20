@@ -16,6 +16,8 @@
 		4C2B7C2E2112944B00DAF29F /* PopViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C2B7C2C2112944B00DAF29F /* PopViewController.xib */; };
 		4C2B7C352112992C00DAF29F /* YFPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2B7C342112992C00DAF29F /* YFPopView.m */; };
 		4C2B7C3D2112A82500DAF29F /* PopLabelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2B7C3C2112A82500DAF29F /* PopLabelView.m */; };
+		E9C6F85A230BC9230022244C /* YFPopView.podspec in Resources */ = {isa = PBXBuildFile; fileRef = E9C6F859230BC9230022244C /* YFPopView.podspec */; };
+		E9C6F85C230BCAB10022244C /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = E9C6F85B230BCAB10022244C /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +38,8 @@
 		AB2004618D3E3D5C3D1CF643 /* Pods-YFDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YFDemo.debug.xcconfig"; path = "Target Support Files/Pods-YFDemo/Pods-YFDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		AF06296224D9867049704D37 /* libPods-YFDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YFDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFB4F04CDC5CA73E9D1EADAE /* Pods-YFDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YFDemo.release.xcconfig"; path = "Target Support Files/Pods-YFDemo/Pods-YFDemo.release.xcconfig"; sourceTree = "<group>"; };
+		E9C6F859230BC9230022244C /* YFPopView.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = YFPopView.podspec; path = ../YFPopView.podspec; sourceTree = "<group>"; };
+		E9C6F85B230BCAB10022244C /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +57,8 @@
 		4C2B7C05211293F000DAF29F = {
 			isa = PBXGroup;
 			children = (
+				E9C6F85B230BCAB10022244C /* README.md */,
+				E9C6F859230BC9230022244C /* YFPopView.podspec */,
 				4C2B7C10211293F000DAF29F /* YFDemo */,
 				4C2B7C0F211293F000DAF29F /* Products */,
 				50C65BADC7DFFEFC54D73E52 /* Pods */,
@@ -118,7 +124,6 @@
 				AB2004618D3E3D5C3D1CF643 /* Pods-YFDemo.debug.xcconfig */,
 				CFB4F04CDC5CA73E9D1EADAE /* Pods-YFDemo.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -190,6 +195,8 @@
 			files = (
 				4C2B7C2E2112944B00DAF29F /* PopViewController.xib in Resources */,
 				4C2B7C1E211293F200DAF29F /* LaunchScreen.storyboard in Resources */,
+				E9C6F85C230BCAB10022244C /* README.md in Resources */,
+				E9C6F85A230BC9230022244C /* YFPopView.podspec in Resources */,
 				4C2B7C1B211293F200DAF29F /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
