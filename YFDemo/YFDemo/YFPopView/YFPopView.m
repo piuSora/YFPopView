@@ -124,9 +124,6 @@
 - (void)showPopViewOn:(UIView *)view{
     removeLock = 1;
     [self willShowCallBack];
-    if (self.willShow) {
-        self.willShow(self);
-    }
     if (!self.superview) {
         [view addSubview:self];
     }
@@ -199,6 +196,8 @@
             [self executeTransformAnimationIsShowing:YES];return;
         }
         [self executeAnimationIsShowing:YES];
+    }else{
+        [self didShowCallBack];
     }
 }
 
@@ -273,7 +272,9 @@
             [self layoutIfNeeded];
             self.animatedView.layer.transform = CATransform3DMakeScale(1, 1, 1);
         }completion:^(BOOL finished) {
-            [self didShowCallBack];
+            if (self->removeLock) {//如果在展示完成之前点击remove则不触发didShow回调
+                [self didShowCallBack];
+            }
         }];
     }else{
         [self layoutIfNeeded];
@@ -294,20 +295,6 @@
         _singleTap.delegate = self;
     }
     return _singleTap;
-}
-
-@end
-
-#import "YFPopView.h"
-
-@implementation UIViewController (YFPopView)
-
-- (void)showPopView:(__kindof UIView *)view{
-    CGSize screenSize = UIScreen.mainScreen.bounds.size;
-    CGSize viewSize = view.frame.size;
-    view.frame = (CGRect){.origin = CGPointMake((screenSize.width - viewSize.width)/2.0, (screenSize.height - viewSize.height) / 2.0), .size = view.frame.size};
-    YFPopView *popView = [[YFPopView alloc] initWithSubView:view];
-    [popView showPopViewOn:UIApplication.sharedApplication.keyWindow];
 }
 
 @end

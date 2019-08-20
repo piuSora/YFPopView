@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		25FADC5577CAA173C569FAF2 /* libPods-YFDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AF06296224D9867049704D37 /* libPods-YFDemo.a */; };
 		4C2B7C13211293F000DAF29F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2B7C12211293F000DAF29F /* AppDelegate.m */; };
 		4C2B7C1B211293F200DAF29F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C2B7C1A211293F200DAF29F /* Assets.xcassets */; };
 		4C2B7C1E211293F200DAF29F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C2B7C1C211293F200DAF29F /* LaunchScreen.storyboard */; };
@@ -32,6 +33,9 @@
 		4C2B7C342112992C00DAF29F /* YFPopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YFPopView.m; sourceTree = "<group>"; };
 		4C2B7C3B2112A82500DAF29F /* PopLabelView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PopLabelView.h; sourceTree = "<group>"; };
 		4C2B7C3C2112A82500DAF29F /* PopLabelView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PopLabelView.m; sourceTree = "<group>"; };
+		AB2004618D3E3D5C3D1CF643 /* Pods-YFDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YFDemo.debug.xcconfig"; path = "Target Support Files/Pods-YFDemo/Pods-YFDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		AF06296224D9867049704D37 /* libPods-YFDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YFDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CFB4F04CDC5CA73E9D1EADAE /* Pods-YFDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YFDemo.release.xcconfig"; path = "Target Support Files/Pods-YFDemo/Pods-YFDemo.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,6 +43,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				25FADC5577CAA173C569FAF2 /* libPods-YFDemo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -50,6 +55,8 @@
 			children = (
 				4C2B7C10211293F000DAF29F /* YFDemo */,
 				4C2B7C0F211293F000DAF29F /* Products */,
+				50C65BADC7DFFEFC54D73E52 /* Pods */,
+				FB8954636EF817881C511780 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -105,6 +112,24 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		50C65BADC7DFFEFC54D73E52 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				AB2004618D3E3D5C3D1CF643 /* Pods-YFDemo.debug.xcconfig */,
+				CFB4F04CDC5CA73E9D1EADAE /* Pods-YFDemo.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		FB8954636EF817881C511780 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AF06296224D9867049704D37 /* libPods-YFDemo.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -112,6 +137,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4C2B7C24211293F200DAF29F /* Build configuration list for PBXNativeTarget "YFDemo" */;
 			buildPhases = (
+				3EFED0DB9931A24B699D69AE /* [CP] Check Pods Manifest.lock */,
 				4C2B7C0A211293F000DAF29F /* Sources */,
 				4C2B7C0B211293F000DAF29F /* Frameworks */,
 				4C2B7C0C211293F000DAF29F /* Resources */,
@@ -169,6 +195,31 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3EFED0DB9931A24B699D69AE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-YFDemo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		4C2B7C0A211293F000DAF29F /* Sources */ = {
@@ -309,6 +360,7 @@
 		};
 		4C2B7C25211293F200DAF29F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AB2004618D3E3D5C3D1CF643 /* Pods-YFDemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -327,6 +379,7 @@
 		};
 		4C2B7C26211293F200DAF29F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CFB4F04CDC5CA73E9D1EADAE /* Pods-YFDemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

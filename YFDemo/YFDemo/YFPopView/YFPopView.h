@@ -24,7 +24,7 @@ typedef NS_ENUM(NSUInteger, YFPopViewAnimationStyle) {
 
 /*!
  @method
- @brief code创建的实例化方法 需要设置subView的frame 如果用autoLayout在展示以前设置他的约束
+ @brief 实例化方法添加自定义subView到popView上 需要设置subView的frame 如果用autoLayout在展示以前设置他的约束
  @param subView 自定义view
  @return 实例化对象
  */
@@ -64,15 +64,5 @@ typedef NS_ENUM(NSUInteger, YFPopViewAnimationStyle) {
 @property (nonatomic, strong) DidShowBlock didShow;
 
 
-
-@end
-
-@interface UIViewController (YFPopView)
-/*!
- @method
- @param view 自定义的customView
- @brief 全屏显示弹窗 屏幕中间 大小为view的size
- */
-- (void)showPopView:(__kindof UIView *)view;
 
 @end
