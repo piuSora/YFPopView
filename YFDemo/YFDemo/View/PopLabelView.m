@@ -15,6 +15,7 @@
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, [UIScreen mainScreen].bounds.size.width - 100, 100)];
         label.font = [UIFont systemFontOfSize:16];
         label.text = @"YFPopView";
+        label.textColor = UIColor.redColor;
         label.backgroundColor = [UIColor whiteColor];
         label.textAlignment = NSTextAlignmentCenter;
         self.backgroundColor = UIColor.orangeColor;
