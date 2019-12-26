@@ -12,46 +12,48 @@ typedef void(^WillShowBlock)(YFPopView *popView);
 typedef void(^DidShowBlock)(YFPopView *popView);
 
 typedef NS_ENUM(NSUInteger, YFPopViewAnimationStyle) {
-    YFPopViewAnimationStyleTopToBottom = 0,//从上至下
+    YFPopViewAnimationStyleTopToBottom = 0,
     YFPopViewAnimationStyleBottomToTop,
     YFPopViewAnimationStyleLeftToRight,
     YFPopViewAnimationStyleRightToLeft,
-    YFPopViewAnimationStyleFade,//淡入淡出 *默认
-    YFPopViewAnimationStyleScale,//缩放
+    YFPopViewAnimationStyleFade,//fade in fade out *default
+    YFPopViewAnimationStyleScale,
 };
 
 @interface YFPopView : UIView
 
 /*!
  @method
- @brief 实例化方法添加自定义subView到popView上 需要设置subView的frame 如果用autoLayout在展示以前设置他的约束
- @param subView 自定义view
- @return 实例化对象
+ @brief  initial method add a custom subView on popView, need to set up subView's frame or constraints
+ @param subView the custom view
+ @return instance object
  */
 
 - (instancetype)initWithSubView:(__kindof UIView *)subView;
 
 /*!
  @method
- @brief 移除弹窗
+ @brief remove pop-up view
  */
 - (void)removeSelf;
 
 /*!
  @method
- @param view 覆盖的view
- @brief 显示弹窗
+ @param view the pop-up view will cover on
+ @brief show the pop-up view
  */
 - (void)showPopViewOn:(UIView *)view;
 
 
-/// 动画效果 默认开启
+/// enable animation,default is on
 @property (assign, nonatomic) BOOL animatedEnable;
-/// 是否开启键盘调整 默认关闭
+/// auto remove popView when click out range of the subview,default is on
+@property (nonatomic, assign) BOOL autoRemoveEnable;
+/// adjust subview when keyboard show,default is off
 @property (assign, nonatomic) BOOL adjustedKeyboardEnable;
-/// 动画时间 默认0.3s
+/// animation duration default is 0.3s
 @property (assign, nonatomic) NSTimeInterval duration;
-/// 动画风格
+/// animation style default is Fade
 @property (assign, nonatomic) YFPopViewAnimationStyle animationStyle;
 
 /// call back when popup view will dismiss

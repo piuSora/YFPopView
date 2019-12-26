@@ -51,6 +51,7 @@
     self.layer.masksToBounds = true;
     [self addGestureRecognizer:self.singleTap];
     self.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:1.0/3.0];
+    self.autoRemoveEnable = true;
     self.adjustedKeyboardEnable = false;
     self.duration = 0.3;
     self.animatedEnable = true;
@@ -59,12 +60,13 @@
 
 #pragma mark - UIGestureRecognizerDelegate
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch  {
-    // 输出点击的view的类名
-    // 若为UITableViewCellContentView（即点击了tableViewCell），则不截获Touch事件
-    if ([NSStringFromClass([touch.view class]) isEqualToString:@"UITableViewCellContentView"] || [touch.view isDescendantOfView:self.animatedView]) {
-        return NO;
+    if (!self.autoRemoveEnable) {
+        return false;
     }
-    return  YES;
+    if ([NSStringFromClass([touch.view class]) isEqualToString:@"UITableViewCellContentView"] || [touch.view isDescendantOfView:self.animatedView]) {
+        return false;
+    }
+    return  true;
 }
 
 - (void)addSubview:(UIView *)view{
