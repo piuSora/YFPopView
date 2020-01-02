@@ -60,10 +60,13 @@
 
 #pragma mark - UIGestureRecognizerDelegate
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch  {
+    if (gestureRecognizer != self.singleTap) {
+        return true;
+    }
     if (!self.autoRemoveEnable) {
         return false;
     }
-    if ([NSStringFromClass([touch.view class]) isEqualToString:@"UITableViewCellContentView"] || [touch.view isDescendantOfView:self.animatedView]) {
+    if ([touch.view isDescendantOfView:self.animatedView]) {
         return false;
     }
     return  true;

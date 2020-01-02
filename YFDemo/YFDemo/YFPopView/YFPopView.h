@@ -49,7 +49,7 @@ typedef NS_ENUM(NSUInteger, YFPopViewAnimationStyle) {
 @property (assign, nonatomic) BOOL animatedEnable;
 /// auto remove popView when click out range of the subview,default is on
 @property (nonatomic, assign) BOOL autoRemoveEnable;
-/// adjust subview when keyboard show,default is off
+/// adjust subview's frame when keyboard show,default is off
 @property (assign, nonatomic) BOOL adjustedKeyboardEnable;
 /// animation duration default is 0.3s
 @property (assign, nonatomic) NSTimeInterval duration;
@@ -64,7 +64,6 @@ typedef NS_ENUM(NSUInteger, YFPopViewAnimationStyle) {
 @property (nonatomic, strong) WillShowBlock willShow;
 /// call back when popup view did show
 @property (nonatomic, strong) DidShowBlock didShow;
-
 
 
 @end
