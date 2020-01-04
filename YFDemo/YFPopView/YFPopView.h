@@ -4,7 +4,8 @@
 //  Created by OS on 2018/3/29.
 //  Copyright © 2018年 Piu. All rights reserved.
 //
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+
 @class YFPopView;
 typedef void(^WillDismissBlock)(YFPopView *popView);
 typedef void(^DidDismissBlock)(YFPopView *popView);
@@ -20,7 +21,15 @@ typedef NS_ENUM(NSUInteger, YFPopViewAnimationStyle) {
     YFPopViewAnimationStyleScale,
 };
 
-@interface YFPopView : UIView
+#if TARGET_OS_IPHONE || TARGET_OS_TV
+    #import <UIKit/UIKit.h>
+    #define YF_VIEW UIView
+#elif TARGET_OS_MAC
+    #import <AppKit/AppKit.h>
+    #define YF_VIEW NSView
+#endif
+
+@interface YFPopView : YF_VIEW
 
 /*!
  @method
@@ -29,7 +38,7 @@ typedef NS_ENUM(NSUInteger, YFPopViewAnimationStyle) {
  @return instance object
  */
 
-- (instancetype)initWithSubView:(__kindof UIView *)subView;
+- (instancetype)initWithSubView:(__kindof YF_VIEW*)subView;
 
 /*!
  @method
@@ -42,15 +51,16 @@ typedef NS_ENUM(NSUInteger, YFPopViewAnimationStyle) {
  @param view the pop-up view will cover on
  @brief show the pop-up view
  */
-- (void)showPopViewOn:(UIView *)view;
+- (void)showPopViewOn:(YF_VIEW *)view;
 
-
+#if TARGET_OS_IPHONE || TARGET_OS_TV
+/// adjust subview's frame when keyboard show,default is off
+@property (assign, nonatomic) BOOL adjustedKeyboardEnable;
+#endif
 /// enable animation,default is on
 @property (assign, nonatomic) BOOL animatedEnable;
 /// auto remove popView when click out range of the subview,default is on
 @property (nonatomic, assign) BOOL autoRemoveEnable;
-/// adjust subview's frame when keyboard show,default is off
-@property (assign, nonatomic) BOOL adjustedKeyboardEnable;
 /// animation duration default is 0.3s
 @property (assign, nonatomic) NSTimeInterval duration;
 /// animation style default is Fade

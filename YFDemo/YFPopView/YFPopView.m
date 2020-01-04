@@ -4,8 +4,8 @@
 //  Created by OS on 2018/3/29.
 //  Copyright © 2018年 Piu. All rights reserved.
 //
-
 #import "YFPopView.h"
+#if TARGET_OS_IPHONE || TARGET_OS_TV
 @interface YFPopView ()<UIGestureRecognizerDelegate>
 {
     CGRect superViewFrame;
@@ -232,7 +232,9 @@
             [self layoutIfNeeded];
             [self.animatedView setFrame:self->endFrame];
         }completion:^(BOOL finished) {
-            [self didShowCallBack];
+            if (self->removeLock) {//如果在展示完成之前点击remove则不触发didShow回调
+                [self didShowCallBack];
+            }
         }];
     }else{
         [self layoutIfNeeded];
@@ -254,7 +256,9 @@
             [self layoutIfNeeded];
             self.animatedView.alpha = 1;
         }completion:^(BOOL finished) {
-            [self didShowCallBack];
+            if (self->removeLock) {//如果在展示完成之前点击remove则不触发didShow回调
+                [self didShowCallBack];
+            }
         }];
     }else{
         [self layoutIfNeeded];
@@ -303,3 +307,4 @@
 }
 
 @end
+#endif

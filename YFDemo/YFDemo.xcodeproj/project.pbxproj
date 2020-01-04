@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		25FADC5577CAA173C569FAF2 /* libPods-YFDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AF06296224D9867049704D37 /* libPods-YFDemo.a */; };
+		49E56A26F738EF1EA237A4BB /* libPods-YFPopView_iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 93D31036DC7EB3E9B331C660 /* libPods-YFPopView_iOS.a */; };
 		4C2B7C13211293F000DAF29F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2B7C12211293F000DAF29F /* AppDelegate.m */; };
 		4C2B7C1B211293F200DAF29F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C2B7C1A211293F200DAF29F /* Assets.xcassets */; };
 		4C2B7C1E211293F200DAF29F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C2B7C1C211293F200DAF29F /* LaunchScreen.storyboard */; };
@@ -16,12 +16,24 @@
 		4C2B7C2E2112944B00DAF29F /* PopViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C2B7C2C2112944B00DAF29F /* PopViewController.xib */; };
 		4C2B7C352112992C00DAF29F /* YFPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2B7C342112992C00DAF29F /* YFPopView.m */; };
 		4C2B7C3D2112A82500DAF29F /* PopLabelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2B7C3C2112A82500DAF29F /* PopLabelView.m */; };
+		D2E7487FE545771340FCBF79 /* libPods-YFPopView_macOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 25CDB7206D45B202E80481FD /* libPods-YFPopView_macOS.a */; };
+		E9B9DC8B23BF09920080DD4D /* YFPopView_mac.m in Sources */ = {isa = PBXBuildFile; fileRef = E9B9DC8A23BF09920080DD4D /* YFPopView_mac.m */; };
+		E9B9DC8E23BF09CF0080DD4D /* TAWeakProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = E9B9DC8D23BF09CF0080DD4D /* TAWeakProxy.m */; };
+		E9B9DC9723BF0B190080DD4D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E9B9DC9623BF0B190080DD4D /* AppDelegate.m */; };
+		E9B9DC9923BF0B1E0080DD4D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9B9DC9823BF0B1E0080DD4D /* Assets.xcassets */; };
+		E9B9DC9C23BF0B1E0080DD4D /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9B9DC9A23BF0B1E0080DD4D /* MainMenu.xib */; };
+		E9B9DC9F23BF0B1E0080DD4D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E9B9DC9E23BF0B1E0080DD4D /* main.m */; };
+		E9B9DCA523C031630080DD4D /* TAWeakProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = E9B9DC8D23BF09CF0080DD4D /* TAWeakProxy.m */; };
+		E9B9DCA723C031630080DD4D /* YFPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2B7C342112992C00DAF29F /* YFPopView.m */; };
+		E9B9DCA823C031630080DD4D /* YFPopView_mac.m in Sources */ = {isa = PBXBuildFile; fileRef = E9B9DC8A23BF09920080DD4D /* YFPopView_mac.m */; };
 		E9C6F85A230BC9230022244C /* YFPopView.podspec in Resources */ = {isa = PBXBuildFile; fileRef = E9C6F859230BC9230022244C /* YFPopView.podspec */; };
 		E9C6F85C230BCAB10022244C /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = E9C6F85B230BCAB10022244C /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		4C2B7C0E211293F000DAF29F /* YFDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YFDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		14E2B7C4C3FD83C80CF230B4 /* Pods-YFPopView_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YFPopView_iOS.debug.xcconfig"; path = "Target Support Files/Pods-YFPopView_iOS/Pods-YFPopView_iOS.debug.xcconfig"; sourceTree = "<group>"; };
+		25CDB7206D45B202E80481FD /* libPods-YFPopView_macOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YFPopView_macOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4C2B7C0E211293F000DAF29F /* YFPopView_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YFPopView_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C2B7C11211293F000DAF29F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4C2B7C12211293F000DAF29F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		4C2B7C1A211293F200DAF29F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -35,9 +47,23 @@
 		4C2B7C342112992C00DAF29F /* YFPopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YFPopView.m; sourceTree = "<group>"; };
 		4C2B7C3B2112A82500DAF29F /* PopLabelView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PopLabelView.h; sourceTree = "<group>"; };
 		4C2B7C3C2112A82500DAF29F /* PopLabelView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PopLabelView.m; sourceTree = "<group>"; };
+		750227BBF089ACB34BFADDD9 /* Pods-YFPopView_macOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YFPopView_macOS.debug.xcconfig"; path = "Target Support Files/Pods-YFPopView_macOS/Pods-YFPopView_macOS.debug.xcconfig"; sourceTree = "<group>"; };
+		93D31036DC7EB3E9B331C660 /* libPods-YFPopView_iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YFPopView_iOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A5A7A5425981F89EBBCB730D /* Pods-YFPopView_macOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YFPopView_macOS.release.xcconfig"; path = "Target Support Files/Pods-YFPopView_macOS/Pods-YFPopView_macOS.release.xcconfig"; sourceTree = "<group>"; };
 		AB2004618D3E3D5C3D1CF643 /* Pods-YFDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YFDemo.debug.xcconfig"; path = "Target Support Files/Pods-YFDemo/Pods-YFDemo.debug.xcconfig"; sourceTree = "<group>"; };
-		AF06296224D9867049704D37 /* libPods-YFDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YFDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AFB91A3BA4C28A85D1FD48B8 /* Pods-YFPopView_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YFPopView_iOS.release.xcconfig"; path = "Target Support Files/Pods-YFPopView_iOS/Pods-YFPopView_iOS.release.xcconfig"; sourceTree = "<group>"; };
 		CFB4F04CDC5CA73E9D1EADAE /* Pods-YFDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YFDemo.release.xcconfig"; path = "Target Support Files/Pods-YFDemo/Pods-YFDemo.release.xcconfig"; sourceTree = "<group>"; };
+		E9B9DC8A23BF09920080DD4D /* YFPopView_mac.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YFPopView_mac.m; sourceTree = "<group>"; };
+		E9B9DC8C23BF09CF0080DD4D /* TAWeakProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAWeakProxy.h; sourceTree = "<group>"; };
+		E9B9DC8D23BF09CF0080DD4D /* TAWeakProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAWeakProxy.m; sourceTree = "<group>"; };
+		E9B9DC9323BF0B190080DD4D /* YFPopView_macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YFPopView_macOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E9B9DC9523BF0B190080DD4D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		E9B9DC9623BF0B190080DD4D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		E9B9DC9823BF0B1E0080DD4D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E9B9DC9B23BF0B1E0080DD4D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		E9B9DC9D23BF0B1E0080DD4D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E9B9DC9E23BF0B1E0080DD4D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		E9B9DCA023BF0B1E0080DD4D /* YFPopViewDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = YFPopViewDemo.entitlements; sourceTree = "<group>"; };
 		E9C6F859230BC9230022244C /* YFPopView.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = YFPopView.podspec; path = ../YFPopView.podspec; sourceTree = "<group>"; };
 		E9C6F85B230BCAB10022244C /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -47,7 +73,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				25FADC5577CAA173C569FAF2 /* libPods-YFDemo.a in Frameworks */,
+				49E56A26F738EF1EA237A4BB /* libPods-YFPopView_iOS.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E9B9DC9023BF0B190080DD4D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D2E7487FE545771340FCBF79 /* libPods-YFPopView_macOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -59,7 +93,9 @@
 			children = (
 				E9C6F85B230BCAB10022244C /* README.md */,
 				E9C6F859230BC9230022244C /* YFPopView.podspec */,
-				4C2B7C10211293F000DAF29F /* YFDemo */,
+				4C2B7C2F2112986B00DAF29F /* YFPopView */,
+				4C2B7C10211293F000DAF29F /* YFPopView_iOS */,
+				E9B9DC9423BF0B190080DD4D /* YFPopView_macOS */,
 				4C2B7C0F211293F000DAF29F /* Products */,
 				50C65BADC7DFFEFC54D73E52 /* Pods */,
 				FB8954636EF817881C511780 /* Frameworks */,
@@ -69,32 +105,35 @@
 		4C2B7C0F211293F000DAF29F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4C2B7C0E211293F000DAF29F /* YFDemo.app */,
+				4C2B7C0E211293F000DAF29F /* YFPopView_iOS.app */,
+				E9B9DC9323BF0B190080DD4D /* YFPopView_macOS.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		4C2B7C10211293F000DAF29F /* YFDemo */ = {
+		4C2B7C10211293F000DAF29F /* YFPopView_iOS */ = {
 			isa = PBXGroup;
 			children = (
 				4C2B7C11211293F000DAF29F /* AppDelegate.h */,
 				4C2B7C12211293F000DAF29F /* AppDelegate.m */,
 				4C2B7C362112A72300DAF29F /* View */,
 				4C2B7C372112A72D00DAF29F /* Controller */,
-				4C2B7C2F2112986B00DAF29F /* YFPopView */,
 				4C2B7C1A211293F200DAF29F /* Assets.xcassets */,
 				4C2B7C1C211293F200DAF29F /* LaunchScreen.storyboard */,
 				4C2B7C1F211293F200DAF29F /* Info.plist */,
 				4C2B7C20211293F200DAF29F /* main.m */,
 			);
-			path = YFDemo;
+			path = YFPopView_iOS;
 			sourceTree = "<group>";
 		};
 		4C2B7C2F2112986B00DAF29F /* YFPopView */ = {
 			isa = PBXGroup;
 			children = (
+				E9B9DC8C23BF09CF0080DD4D /* TAWeakProxy.h */,
+				E9B9DC8D23BF09CF0080DD4D /* TAWeakProxy.m */,
 				4C2B7C332112992C00DAF29F /* YFPopView.h */,
 				4C2B7C342112992C00DAF29F /* YFPopView.m */,
+				E9B9DC8A23BF09920080DD4D /* YFPopView_mac.m */,
 			);
 			path = YFPopView;
 			sourceTree = "<group>";
@@ -123,14 +162,33 @@
 			children = (
 				AB2004618D3E3D5C3D1CF643 /* Pods-YFDemo.debug.xcconfig */,
 				CFB4F04CDC5CA73E9D1EADAE /* Pods-YFDemo.release.xcconfig */,
+				14E2B7C4C3FD83C80CF230B4 /* Pods-YFPopView_iOS.debug.xcconfig */,
+				AFB91A3BA4C28A85D1FD48B8 /* Pods-YFPopView_iOS.release.xcconfig */,
+				750227BBF089ACB34BFADDD9 /* Pods-YFPopView_macOS.debug.xcconfig */,
+				A5A7A5425981F89EBBCB730D /* Pods-YFPopView_macOS.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		E9B9DC9423BF0B190080DD4D /* YFPopView_macOS */ = {
+			isa = PBXGroup;
+			children = (
+				E9B9DC9523BF0B190080DD4D /* AppDelegate.h */,
+				E9B9DC9623BF0B190080DD4D /* AppDelegate.m */,
+				E9B9DC9823BF0B1E0080DD4D /* Assets.xcassets */,
+				E9B9DC9A23BF0B1E0080DD4D /* MainMenu.xib */,
+				E9B9DC9D23BF0B1E0080DD4D /* Info.plist */,
+				E9B9DC9E23BF0B1E0080DD4D /* main.m */,
+				E9B9DCA023BF0B1E0080DD4D /* YFPopViewDemo.entitlements */,
+			);
+			path = YFPopView_macOS;
 			sourceTree = "<group>";
 		};
 		FB8954636EF817881C511780 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				AF06296224D9867049704D37 /* libPods-YFDemo.a */,
+				93D31036DC7EB3E9B331C660 /* libPods-YFPopView_iOS.a */,
+				25CDB7206D45B202E80481FD /* libPods-YFPopView_macOS.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -138,9 +196,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		4C2B7C0D211293F000DAF29F /* YFDemo */ = {
+		4C2B7C0D211293F000DAF29F /* YFPopView_iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4C2B7C24211293F200DAF29F /* Build configuration list for PBXNativeTarget "YFDemo" */;
+			buildConfigurationList = 4C2B7C24211293F200DAF29F /* Build configuration list for PBXNativeTarget "YFPopView_iOS" */;
 			buildPhases = (
 				3EFED0DB9931A24B699D69AE /* [CP] Check Pods Manifest.lock */,
 				4C2B7C0A211293F000DAF29F /* Sources */,
@@ -151,9 +209,27 @@
 			);
 			dependencies = (
 			);
-			name = YFDemo;
+			name = YFPopView_iOS;
 			productName = YFDemo;
-			productReference = 4C2B7C0E211293F000DAF29F /* YFDemo.app */;
+			productReference = 4C2B7C0E211293F000DAF29F /* YFPopView_iOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E9B9DC9223BF0B190080DD4D /* YFPopView_macOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E9B9DCA123BF0B1E0080DD4D /* Build configuration list for PBXNativeTarget "YFPopView_macOS" */;
+			buildPhases = (
+				5BFB2F5671FA51E73E250179 /* [CP] Check Pods Manifest.lock */,
+				E9B9DC8F23BF0B190080DD4D /* Sources */,
+				E9B9DC9023BF0B190080DD4D /* Frameworks */,
+				E9B9DC9123BF0B190080DD4D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = YFPopView_macOS;
+			productName = YFPopViewDemo;
+			productReference = E9B9DC9323BF0B190080DD4D /* YFPopView_macOS.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -167,6 +243,9 @@
 				TargetAttributes = {
 					4C2B7C0D211293F000DAF29F = {
 						CreatedOnToolsVersion = 9.4.1;
+					};
+					E9B9DC9223BF0B190080DD4D = {
+						CreatedOnToolsVersion = 11.3;
 					};
 				};
 			};
@@ -183,7 +262,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				4C2B7C0D211293F000DAF29F /* YFDemo */,
+				4C2B7C0D211293F000DAF29F /* YFPopView_iOS */,
+				E9B9DC9223BF0B190080DD4D /* YFPopView_macOS */,
 			);
 		};
 /* End PBXProject section */
@@ -198,6 +278,15 @@
 				E9C6F85C230BCAB10022244C /* README.md in Resources */,
 				E9C6F85A230BC9230022244C /* YFPopView.podspec in Resources */,
 				4C2B7C1B211293F200DAF29F /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E9B9DC9123BF0B190080DD4D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E9B9DC9923BF0B1E0080DD4D /* Assets.xcassets in Resources */,
+				E9B9DC9C23BF0B1E0080DD4D /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -219,7 +308,29 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-YFDemo-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-YFPopView_iOS-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5BFB2F5671FA51E73E250179 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-YFPopView_macOS-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -236,8 +347,22 @@
 				4C2B7C2D2112944B00DAF29F /* PopViewController.m in Sources */,
 				4C2B7C3D2112A82500DAF29F /* PopLabelView.m in Sources */,
 				4C2B7C21211293F200DAF29F /* main.m in Sources */,
+				E9B9DC8B23BF09920080DD4D /* YFPopView_mac.m in Sources */,
+				E9B9DC8E23BF09CF0080DD4D /* TAWeakProxy.m in Sources */,
 				4C2B7C13211293F000DAF29F /* AppDelegate.m in Sources */,
 				4C2B7C352112992C00DAF29F /* YFPopView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E9B9DC8F23BF0B190080DD4D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E9B9DCA523C031630080DD4D /* TAWeakProxy.m in Sources */,
+				E9B9DCA723C031630080DD4D /* YFPopView.m in Sources */,
+				E9B9DCA823C031630080DD4D /* YFPopView_mac.m in Sources */,
+				E9B9DC9F23BF0B1E0080DD4D /* main.m in Sources */,
+				E9B9DC9723BF0B190080DD4D /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -250,6 +375,14 @@
 				4C2B7C1D211293F200DAF29F /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		E9B9DC9A23BF0B1E0080DD4D /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E9B9DC9B23BF0B1E0080DD4D /* Base */,
+			);
+			name = MainMenu.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -367,12 +500,12 @@
 		};
 		4C2B7C25211293F200DAF29F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AB2004618D3E3D5C3D1CF643 /* Pods-YFDemo.debug.xcconfig */;
+			baseConfigurationReference = 14E2B7C4C3FD83C80CF230B4 /* Pods-YFPopView_iOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 22Z66YY952;
-				INFOPLIST_FILE = YFDemo/Info.plist;
+				INFOPLIST_FILE = YFPopView_iOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -386,12 +519,12 @@
 		};
 		4C2B7C26211293F200DAF29F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CFB4F04CDC5CA73E9D1EADAE /* Pods-YFDemo.release.xcconfig */;
+			baseConfigurationReference = AFB91A3BA4C28A85D1FD48B8 /* Pods-YFPopView_iOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 22Z66YY952;
-				INFOPLIST_FILE = YFDemo/Info.plist;
+				INFOPLIST_FILE = YFPopView_iOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -400,6 +533,51 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "-.YFDemo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		E9B9DCA223BF0B1E0080DD4D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 750227BBF089ACB34BFADDD9 /* Pods-YFPopView_macOS.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = YFPopViewDemo/YFPopViewDemo.entitlements;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = YFPopView_macOS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = rd.YFPopViewDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		E9B9DCA323BF0B1E0080DD4D /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A5A7A5425981F89EBBCB730D /* Pods-YFPopView_macOS.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = YFPopViewDemo/YFPopViewDemo.entitlements;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = YFPopView_macOS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = rd.YFPopViewDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
 			};
 			name = Release;
 		};
@@ -415,11 +593,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4C2B7C24211293F200DAF29F /* Build configuration list for PBXNativeTarget "YFDemo" */ = {
+		4C2B7C24211293F200DAF29F /* Build configuration list for PBXNativeTarget "YFPopView_iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4C2B7C25211293F200DAF29F /* Debug */,
 				4C2B7C26211293F200DAF29F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E9B9DCA123BF0B1E0080DD4D /* Build configuration list for PBXNativeTarget "YFPopView_macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E9B9DCA223BF0B1E0080DD4D /* Debug */,
+				E9B9DCA323BF0B1E0080DD4D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
