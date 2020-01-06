@@ -8,6 +8,10 @@
 
 #import "TAWeakProxy.h"
 
+@interface TAWeakProxy ()<NSObject>
+
+@end
+
 @implementation TAWeakProxy
 
 - (instancetype)initWeakProxyWithTarget:(id)target{
@@ -19,6 +23,10 @@
     return [[self alloc] initWeakProxyWithTarget:target];
 }
 
+- (id)forwardingTargetForSelector:(SEL)selector {
+    return _target;
+}
+
 - (void)forwardInvocation:(NSInvocation *)invocation{
     SEL sel = [invocation selector];
     if ([self.target respondsToSelector:sel]) {
@@ -28,6 +36,10 @@
 
 - (NSMethodSignature *)methodSignatureForSelector:(SEL)sel{
     return [self.target methodSignatureForSelector:sel];
+}
+
+- (BOOL)conformsToProtocol:(Protocol *)aProtocol{
+    return [self.target conformsToProtocol:aProtocol];
 }
 
 -(BOOL)respondsToSelector:(SEL)aSelector{

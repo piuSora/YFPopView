@@ -23,6 +23,9 @@
 
 @end
 
+static NSString *animationShowKey = @"popview_show";
+static NSString *animationRemoveKey = @"popview_remove";
+
 @implementation YFPopView
 
 - (instancetype)init{
@@ -197,23 +200,37 @@
 
 - (void)executeAnimationIsShowing:(BOOL)isShowing{
     if (isShowing) {
-        [self.animatedView setFrame:self->startFrame];
-        [NSAnimationContext runAnimationGroup:^(NSAnimationContext * _Nonnull context) {
-            context.allowsImplicitAnimation = true;
-            [context setDuration:self.duration];
-            [self.animatedView.animator setFrame:self->endFrame];
-        } completionHandler:^{
-            [self didShowCallBack];
-        }];
+        CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"position"];
+        animation.delegate = [TAWeakProxy weakProxyWithTarget:self];
+        animation.fromValue = [NSValue valueWithPoint:startFrame.origin];
+        animation.toValue = [NSValue valueWithPoint:endFrame.origin];
+        animation.duration = self.duration;
+        animation.autoreverses = false;
+        animation.fillMode = kCAFillModeForwards;
+        animation.repeatCount = 0;
+        animation.removedOnCompletion = false;
+        [self.animatedView.layer addAnimation:animation forKey:animationShowKey];
     }else{
-        [self.animatedView setFrame:endFrame];
-        [NSAnimationContext runAnimationGroup:^(NSAnimationContext * _Nonnull context) {
-            context.allowsImplicitAnimation = true;
-            [context setDuration:self.duration];
-            [self.animatedView.animator setFrame:self->startFrame];
-        } completionHandler:^{
-            [self didRemove];
-        }];
+        CGFloat ratio = 0;
+        CGPoint presentPosition = self.animatedView.layer.presentationLayer.position;
+        CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"position"];
+        TAWeakProxy *proxy = [TAWeakProxy weakProxyWithTarget:self];
+        animation.delegate = proxy;
+        animation.fromValue = [NSValue valueWithPoint:presentPosition];
+        animation.toValue = [NSValue valueWithPoint:startFrame.origin];
+        if (presentPosition.x != startFrame.origin.x) {
+            ratio = fabs(presentPosition.x - startFrame.origin.x) / fabs(endFrame.origin.x - startFrame.origin.x);
+        }else{
+            ratio = fabs(presentPosition.y - startFrame.origin.y) / fabs(endFrame.origin.y - startFrame.origin.y);
+        }
+        animation.duration = self.duration * ratio;
+        animation.autoreverses = false;
+        animation.fillMode = kCAFillModeForwards;
+        animation.removedOnCompletion = false;
+        animation.repeatCount = 0;
+        //must remove last animation
+        [self.animatedView.layer removeAnimationForKey:animationShowKey];
+        [self.animatedView.layer addAnimation:animation forKey:animationRemoveKey];
     }
 }
 
@@ -254,7 +271,7 @@
         animation.fillMode = kCAFillModeForwards;
         animation.fromValue = [NSValue valueWithCATransform3D:tr];
         animation.toValue = [NSValue valueWithCATransform3D:CATransform3DIdentity];
-        [self.animatedView.layer addAnimation:animation forKey:@"popview_show"];
+        [self.animatedView.layer addAnimation:animation forKey:animationShowKey];
     }else{
         CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"transform"];
         CATransform3D tr = CATransform3DIdentity;
@@ -269,14 +286,18 @@
         animation.fillMode = kCAFillModeForwards;
         animation.fromValue = [NSValue valueWithCATransform3D:CATransform3DIdentity];
         animation.toValue = [NSValue valueWithCATransform3D:tr];
-        [self.animatedView.layer addAnimation:animation forKey:@"popview_remove"];
+        [self.animatedView.layer addAnimation:animation forKey:animationRemoveKey];
+//        [self.animatedView.layer removeAllAnimations];
+    
     }
 }
 
+#pragma mark - CABasicAnimation Delegate
+
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag{
-    if ([anim isEqual:[self.animatedView.layer animationForKey:@"popview_show"]]) {
+    if ([anim isEqual:[self.animatedView.layer animationForKey:animationShowKey]]) {
         [self didShowCallBack];
-    }else if([anim isEqual:[self.animatedView.layer animationForKey:@"popview_remove"]]){
+    }else if([anim isEqual:[self.animatedView.layer animationForKey:animationRemoveKey]]){
         [self didRemove];
     }
 }

@@ -3,7 +3,7 @@
 //  YFPopViewDemo
 //
 //  Created by 呼哈哈 on 2020/1/3.
-//  Copyright © 2020 邹一帆. All rights reserved.
+//  Copyright © 2020 piu. All rights reserved.
 //
 
 #import <Cocoa/Cocoa.h>
