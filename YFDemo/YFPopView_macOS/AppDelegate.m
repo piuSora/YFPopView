@@ -20,11 +20,12 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
 }
 - (IBAction)showPopViewAction:(NSButton *)sender {
+    sender.ignoresMultiClick = true;
     NSView *customView = [[NSView alloc]init];
     customView.wantsLayer = true;
     customView.layer.backgroundColor = NSColor.redColor.CGColor;
     YFPopView *popView = [[YFPopView alloc] initWithSubView:customView];
-    popView.duration = 3;
+    popView.duration = 2;
     popView.animationStyle = YFPopViewAnimationStyleTopToBottom;
     [customView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(CGSizeMake(100, 80));

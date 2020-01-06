@@ -287,8 +287,6 @@ static NSString *animationRemoveKey = @"popview_remove";
         animation.fromValue = [NSValue valueWithCATransform3D:CATransform3DIdentity];
         animation.toValue = [NSValue valueWithCATransform3D:tr];
         [self.animatedView.layer addAnimation:animation forKey:animationRemoveKey];
-//        [self.animatedView.layer removeAllAnimations];
-    
     }
 }
 
