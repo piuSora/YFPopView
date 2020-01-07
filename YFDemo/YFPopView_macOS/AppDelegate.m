@@ -26,7 +26,6 @@
     customView.layer.backgroundColor = NSColor.redColor.CGColor;
     YFPopView *popView = [[YFPopView alloc] initWithSubView:customView];
     popView.duration = 2;
-    popView.animationStyle = YFPopViewAnimationStyleTopToBottom;
     [customView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(CGSizeMake(100, 80));
         make.center.mas_equalTo(popView);

@@ -4,7 +4,7 @@
 //  Created by OS on 2018/3/29.
 //  Copyright © 2018年 Piu. All rights reserved.
 //
-#import <Foundation/Foundation.h>
+#import "YFPopUtils.h"
 
 @class YFPopView;
 typedef void(^WillDismissBlock)(YFPopView *popView);
@@ -17,17 +17,9 @@ typedef NS_ENUM(NSUInteger, YFPopViewAnimationStyle) {
     YFPopViewAnimationStyleBottomToTop,
     YFPopViewAnimationStyleLeftToRight,
     YFPopViewAnimationStyleRightToLeft,
-    YFPopViewAnimationStyleFade,//fade in fade out *default
-    YFPopViewAnimationStyleScale,
+    YFPopViewAnimationStyleFade = 100,//fade in fade out *default
+    YFPopViewAnimationStyleScale = 101,
 };
-
-#if TARGET_OS_IPHONE || TARGET_OS_TV
-    #import <UIKit/UIKit.h>
-    #define YF_VIEW UIView
-#elif TARGET_OS_MAC
-    #import <AppKit/AppKit.h>
-    #define YF_VIEW NSView
-#endif
 
 @interface YFPopView : YF_VIEW
 

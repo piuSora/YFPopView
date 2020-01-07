@@ -16,6 +16,7 @@
     CGRect subViewFrame;
     CGRect startFrame;
     CGRect endFrame;
+    CGFloat endAlpha;
     
     int removeLock;
 }
@@ -69,6 +70,7 @@ static NSString *animationRemoveKey = @"popview_remove";
 - (void)loadPopView{
     self.wantsLayer = true;
     self.layer.backgroundColor = [NSColor colorWithRed:0 green:0 blue:0 alpha:0.7].CGColor;
+    endAlpha = self.animatedView.layer.opacity;
     removeLock = 0;
     self.layer.masksToBounds = true;
     self.duration = 0.3;
@@ -133,14 +135,7 @@ static NSString *animationRemoveKey = @"popview_remove";
 
 - (void)removeSelfWithAnimated:(BOOL)animated{
     if (animated) {
-        if (self.animationStyle == YFPopViewAnimationStyleScale) {
-            [self executeTransformAnimationIsShowing:NO];
-            return;
-        }else if (self.animationStyle == YFPopViewAnimationStyleFade){
-            [self executeFadeAnimationIsShowing:NO];
-            return;
-        }
-        [self executeAnimationIsShowing:NO];
+        [self executeAnimationIsShow:false];
     }else{
         [self didRemove];
     }
@@ -170,12 +165,8 @@ static NSString *animationRemoveKey = @"popview_remove";
             [self prepareAnimationFromRightToLeft];
         }else if (self.animationStyle == YFPopViewAnimationStyleLeftToRight){
             [self prepareAnimationFromLeftToRight];
-        }else if (self.animationStyle == YFPopViewAnimationStyleFade){
-            [self executeFadeAnimationIsShowing:YES];return;
-        }else if (self.animationStyle == YFPopViewAnimationStyleScale){
-            [self executeTransformAnimationIsShowing:YES];return;
         }
-        [self executeAnimationIsShowing:YES];
+        [self executeAnimationIsShow:true];
     }else{
         [self didShowCallBack];
     }
@@ -198,96 +189,64 @@ static NSString *animationRemoveKey = @"popview_remove";
     endFrame = subViewFrame;
 }
 
-- (void)executeAnimationIsShowing:(BOOL)isShowing{
-    if (isShowing) {
-        CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"position"];
-        animation.delegate = [TAWeakProxy weakProxyWithTarget:self];
-        animation.fromValue = [NSValue valueWithPoint:startFrame.origin];
-        animation.toValue = [NSValue valueWithPoint:endFrame.origin];
-        animation.duration = self.duration;
-        animation.autoreverses = false;
-        animation.fillMode = kCAFillModeForwards;
-        animation.repeatCount = 0;
-        animation.removedOnCompletion = false;
-        [self.animatedView.layer addAnimation:animation forKey:animationShowKey];
-    }else{
-        CGFloat ratio = 0;
+- (void)executeAnimationIsShow:(BOOL)show{
+    NSString *keyPath;
+    NSValue *fromValue,*toValue,*presentValue;
+    NSString *animationKey = animationShowKey;
+    NSTimeInterval realDuration = self.duration;
+    if (self.animationStyle < 10) {
+        keyPath = @"position";
         CGPoint presentPosition = self.animatedView.layer.presentationLayer.position;
-        CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"position"];
-        TAWeakProxy *proxy = [TAWeakProxy weakProxyWithTarget:self];
-        animation.delegate = proxy;
-        animation.fromValue = [NSValue valueWithPoint:presentPosition];
-        animation.toValue = [NSValue valueWithPoint:startFrame.origin];
-        if (presentPosition.x != startFrame.origin.x) {
-            ratio = fabs(presentPosition.x - startFrame.origin.x) / fabs(endFrame.origin.x - startFrame.origin.x);
-        }else{
-            ratio = fabs(presentPosition.y - startFrame.origin.y) / fabs(endFrame.origin.y - startFrame.origin.y);
+        presentValue = @(presentPosition);
+        fromValue = [NSValue valueWithPoint:startFrame.origin];
+        toValue = [NSValue valueWithPoint:endFrame.origin];
+    }else if (self.animationStyle == YFPopViewAnimationStyleFade){
+        keyPath = @"opacity";
+        presentValue = @(self.animatedView.layer.presentationLayer.opacity);
+        fromValue = @0;
+        toValue = @(endAlpha);
+    }else{
+        keyPath = @"transform";
+        presentValue = [NSValue valueWithCATransform3D:self.animatedView.layer.presentationLayer.transform];
+        CATransform3D tr = CATransform3DTranslate(CATransform3DIdentity, self.animatedView.bounds.size.width / 2, self.animatedView.bounds.size.height / 2, 0);
+        tr = CATransform3DScale(tr, 0.001, 0.001, 1);
+        tr = CATransform3DTranslate(tr, -self.animatedView.bounds.size.width / 2, -self.animatedView.bounds.size.height / 2, 0);
+        fromValue = [NSValue valueWithCATransform3D:tr];
+        toValue = [NSValue valueWithCATransform3D:CATransform3DIdentity];
+    }
+    if (!show) {
+        CGFloat ratio = 0;
+        CALayer *presentLayer = self.animatedView.layer.presentationLayer;
+        if (!CGPointEqualToPoint(presentLayer.position, startFrame.origin)) {
+            CGPoint presentPosition = presentLayer.position;
+            if (presentPosition.x != startFrame.origin.x) {
+                ratio = fabs(presentPosition.x - startFrame.origin.x) / fabs(endFrame.origin.x - startFrame.origin.x);
+            }else{
+                ratio = fabs(presentPosition.y - startFrame.origin.y) / fabs(endFrame.origin.y - startFrame.origin.y);
+            }
         }
-        animation.duration = self.duration * ratio;
-        animation.autoreverses = false;
-        animation.fillMode = kCAFillModeForwards;
-        animation.removedOnCompletion = false;
-        animation.repeatCount = 0;
-        //must remove last animation
+        if (presentLayer.opacity != endAlpha) {
+            ratio = presentLayer.opacity / endAlpha;
+        }
+        if (!CATransform3DEqualToTransform(presentLayer.transform, CATransform3DIdentity)) {
+            ratio = [[presentLayer valueForKeyPath:@"transform.scale"] floatValue];
+        }
+        toValue = fromValue;
+        fromValue = presentValue;
+        realDuration = ratio * self.duration;
         [self.animatedView.layer removeAnimationForKey:animationShowKey];
-        [self.animatedView.layer addAnimation:animation forKey:animationRemoveKey];
+        animationKey = animationRemoveKey;
     }
-}
-
-- (void)executeFadeAnimationIsShowing:(BOOL)isShowing{
-    if (isShowing) {
-        self.animatedView.alphaValue = 0;
-        [NSAnimationContext runAnimationGroup:^(NSAnimationContext * _Nonnull context) {
-            [context setDuration:self.duration];
-            [self.animatedView.animator setAlphaValue:1];
-        } completionHandler:^{
-            [self didShowCallBack];
-        }];
-    }else{
-        [self.animatedView setAlphaValue:1];
-        [NSAnimationContext runAnimationGroup:^(NSAnimationContext * _Nonnull context) {
-            [context setDuration:self.duration];
-            [self.animatedView.animator setAlphaValue:0];
-        } completionHandler:^{
-            [self didRemove];
-        }];
-    }
-}
-
-
-- (void)executeTransformAnimationIsShowing:(BOOL)isShowing{
-    if (isShowing) {
-        //设置锚点失效，采用缩放的同时位移完成
-        CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"transform"];
-        CATransform3D tr = CATransform3DIdentity;
-        tr = CATransform3DTranslate(tr, self.animatedView.bounds.size.width / 2, self.animatedView.bounds.size.height / 2, 0);
-        tr = CATransform3DScale(tr, 0.001, 0.001, 1);
-        tr = CATransform3DTranslate(tr, -self.animatedView.bounds.size.width / 2, -self.animatedView.bounds.size.height / 2, 0);
-        animation.delegate = [TAWeakProxy weakProxyWithTarget:self];
-        animation.duration = self.duration;
-        animation.autoreverses = false;
-        animation.repeatCount = 0;
-        animation.removedOnCompletion = false;
-        animation.fillMode = kCAFillModeForwards;
-        animation.fromValue = [NSValue valueWithCATransform3D:tr];
-        animation.toValue = [NSValue valueWithCATransform3D:CATransform3DIdentity];
-        [self.animatedView.layer addAnimation:animation forKey:animationShowKey];
-    }else{
-        CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"transform"];
-        CATransform3D tr = CATransform3DIdentity;
-        tr = CATransform3DTranslate(tr, self.animatedView.bounds.size.width / 2, self.animatedView.bounds.size.height / 2, 0);
-        tr = CATransform3DScale(tr, 0.001, 0.001, 1);
-        tr = CATransform3DTranslate(tr, -self.animatedView.bounds.size.width / 2, -self.animatedView.bounds.size.height / 2, 0);
-        animation.delegate = [TAWeakProxy weakProxyWithTarget:self];
-        animation.duration = self.duration;
-        animation.autoreverses = false;
-        animation.repeatCount = 0;
-        animation.removedOnCompletion = false;
-        animation.fillMode = kCAFillModeForwards;
-        animation.fromValue = [NSValue valueWithCATransform3D:CATransform3DIdentity];
-        animation.toValue = [NSValue valueWithCATransform3D:tr];
-        [self.animatedView.layer addAnimation:animation forKey:animationRemoveKey];
-    }
+    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:keyPath];
+    animation.delegate = [TAWeakProxy weakProxyWithTarget:self];
+    animation.fromValue = fromValue;
+    animation.toValue = toValue;
+    animation.duration = realDuration;
+    animation.autoreverses = false;
+    animation.fillMode = kCAFillModeForwards;
+    animation.repeatCount = 0;
+    animation.removedOnCompletion = false;
+    [self.animatedView.layer addAnimation:animation forKey:animationKey];
 }
 
 #pragma mark - CABasicAnimation Delegate

@@ -66,6 +66,7 @@
 		E9B9DCA023BF0B1E0080DD4D /* YFPopViewDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = YFPopViewDemo.entitlements; sourceTree = "<group>"; };
 		E9C6F859230BC9230022244C /* YFPopView.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = YFPopView.podspec; path = ../YFPopView.podspec; sourceTree = "<group>"; };
 		E9C6F85B230BCAB10022244C /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		E9FDEF3423C31D2D00D0AB29 /* YFPopUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YFPopUtils.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +135,7 @@
 				4C2B7C332112992C00DAF29F /* YFPopView.h */,
 				4C2B7C342112992C00DAF29F /* YFPopView.m */,
 				E9B9DC8A23BF09920080DD4D /* YFPopView_mac.m */,
+				E9FDEF3423C31D2D00D0AB29 /* YFPopUtils.h */,
 			);
 			path = YFPopView;
 			sourceTree = "<group>";

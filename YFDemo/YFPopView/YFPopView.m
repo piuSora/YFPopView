@@ -272,7 +272,6 @@
     }
 }
 //缩放动画
-
 - (void)executeTransformAnimationIsShowing:(BOOL)isShowing{
     if (isShowing) {
         [self layoutIfNeeded];
