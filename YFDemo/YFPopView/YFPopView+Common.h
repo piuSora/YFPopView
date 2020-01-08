@@ -30,11 +30,6 @@ static NSString *animationRemoveKey = @"popview_remove";
 
 - (void)loadPopView;
 
-//- (void)willShowCallBack;
-//- (void)willDismissCallBack;
-//- (void)didDismissCallBack;
-//- (void)didShowCallBack;
-
 - (void)removeSelfWithAnimated:(BOOL)animated;
 - (void)_showPopViewOn:(YF_VIEW *)view;
 - (void)_removeSelf;
