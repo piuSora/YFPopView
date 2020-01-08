@@ -26,17 +26,10 @@ typedef NS_ENUM(NSUInteger, YFPopViewAnimationStyle) {
 /*!
  @method
  @brief  initial method add a custom subView on popView, need to set up subView's frame or constraints
- @param subView the custom view
+ @param animationView the custom view
  @return instance object
  */
-
-- (instancetype)initWithSubView:(__kindof YF_VIEW*)subView;
-
-/*!
- @method
- @brief remove pop-up view
- */
-- (void)removeSelf;
+- (instancetype)initWithAnimationView:(__kindof YF_VIEW*)animationView;
 
 /*!
  @method
@@ -44,6 +37,12 @@ typedef NS_ENUM(NSUInteger, YFPopViewAnimationStyle) {
  @brief show the pop-up view
  */
 - (void)showPopViewOn:(YF_VIEW *)view;
+
+/*!
+ @method
+ @brief remove pop-up view
+ */
+- (void)removeSelf;
 
 #if TARGET_OS_IPHONE || TARGET_OS_TV
 /// adjust subview's frame when keyboard show,default is off
@@ -57,6 +56,8 @@ typedef NS_ENUM(NSUInteger, YFPopViewAnimationStyle) {
 @property (assign, nonatomic) NSTimeInterval duration;
 /// animation style default is Fade
 @property (assign, nonatomic) YFPopViewAnimationStyle animationStyle;
+/// custom view for animation
+@property (strong, nonatomic) YF_VIEW *animationView;
 
 /// call back when popup view will dismiss
 @property (nonatomic, strong) WillDismissBlock willDismiss;

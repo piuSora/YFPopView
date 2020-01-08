@@ -23,9 +23,8 @@
 }
 
 - (IBAction)popViewAction:(UIButton *)sender {
-//    PopLabelView *labelView = [[PopLabelView alloc] initWithFrame:CGRectMake(40, 200, [UIScreen mainScreen].bounds.size.width - 80, 120)];
     PopLabelView *labelView = [PopLabelView new];
-    YFPopView *popView = [[YFPopView alloc] initWithSubView:labelView];
+    YFPopView *popView = [[YFPopView alloc] initWithAnimationView:labelView];
     [labelView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.mas_equalTo([UIScreen mainScreen].bounds.size.width - 80);
         make.height.mas_equalTo(120);

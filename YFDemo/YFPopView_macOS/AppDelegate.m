@@ -24,8 +24,19 @@
     NSView *customView = [[NSView alloc]init];
     customView.wantsLayer = true;
     customView.layer.backgroundColor = NSColor.redColor.CGColor;
-    YFPopView *popView = [[YFPopView alloc] initWithSubView:customView];
-    popView.duration = 2;
+    YFPopView *popView = [[YFPopView alloc] initWithAnimationView:customView];
+    popView.willShow = ^(YFPopView *popView) {
+        NSLog(@"pop view will show");
+    };
+    popView.didShow = ^(YFPopView *popView) {
+        NSLog(@"pop view did show");
+    };
+    popView.willDismiss = ^(YFPopView *popView) {
+        NSLog(@"pop view will dismiss");
+    };
+    popView.didDismiss = ^(YFPopView *popView) {
+        NSLog(@"pop view did dismiss");
+    };
     [customView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(CGSizeMake(100, 80));
         make.center.mas_equalTo(popView);

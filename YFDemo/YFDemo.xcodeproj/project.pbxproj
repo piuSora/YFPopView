@@ -17,6 +17,8 @@
 		4C2B7C352112992C00DAF29F /* YFPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2B7C342112992C00DAF29F /* YFPopView.m */; };
 		4C2B7C3D2112A82500DAF29F /* PopLabelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2B7C3C2112A82500DAF29F /* PopLabelView.m */; };
 		D2E7487FE545771340FCBF79 /* libPods-YFPopView_macOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 25CDB7206D45B202E80481FD /* libPods-YFPopView_macOS.a */; };
+		E94813BF23C5B0CB00CFB144 /* YFPopView+Common.m in Sources */ = {isa = PBXBuildFile; fileRef = E94813BE23C5B0CB00CFB144 /* YFPopView+Common.m */; };
+		E94813C023C5B0D000CFB144 /* YFPopView+Common.m in Sources */ = {isa = PBXBuildFile; fileRef = E94813BE23C5B0CB00CFB144 /* YFPopView+Common.m */; };
 		E9B9DC8B23BF09920080DD4D /* YFPopView_mac.m in Sources */ = {isa = PBXBuildFile; fileRef = E9B9DC8A23BF09920080DD4D /* YFPopView_mac.m */; };
 		E9B9DC8E23BF09CF0080DD4D /* TAWeakProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = E9B9DC8D23BF09CF0080DD4D /* TAWeakProxy.m */; };
 		E9B9DC9723BF0B190080DD4D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E9B9DC9623BF0B190080DD4D /* AppDelegate.m */; };
@@ -53,6 +55,8 @@
 		AB2004618D3E3D5C3D1CF643 /* Pods-YFDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YFDemo.debug.xcconfig"; path = "Target Support Files/Pods-YFDemo/Pods-YFDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		AFB91A3BA4C28A85D1FD48B8 /* Pods-YFPopView_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YFPopView_iOS.release.xcconfig"; path = "Target Support Files/Pods-YFPopView_iOS/Pods-YFPopView_iOS.release.xcconfig"; sourceTree = "<group>"; };
 		CFB4F04CDC5CA73E9D1EADAE /* Pods-YFDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YFDemo.release.xcconfig"; path = "Target Support Files/Pods-YFDemo/Pods-YFDemo.release.xcconfig"; sourceTree = "<group>"; };
+		E94813BD23C5B0CB00CFB144 /* YFPopView+Common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "YFPopView+Common.h"; sourceTree = "<group>"; };
+		E94813BE23C5B0CB00CFB144 /* YFPopView+Common.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "YFPopView+Common.m"; sourceTree = "<group>"; };
 		E9B9DC8A23BF09920080DD4D /* YFPopView_mac.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YFPopView_mac.m; sourceTree = "<group>"; };
 		E9B9DC8C23BF09CF0080DD4D /* TAWeakProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAWeakProxy.h; sourceTree = "<group>"; };
 		E9B9DC8D23BF09CF0080DD4D /* TAWeakProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAWeakProxy.m; sourceTree = "<group>"; };
@@ -135,6 +139,8 @@
 				4C2B7C332112992C00DAF29F /* YFPopView.h */,
 				4C2B7C342112992C00DAF29F /* YFPopView.m */,
 				E9B9DC8A23BF09920080DD4D /* YFPopView_mac.m */,
+				E94813BD23C5B0CB00CFB144 /* YFPopView+Common.h */,
+				E94813BE23C5B0CB00CFB144 /* YFPopView+Common.m */,
 				E9FDEF3423C31D2D00D0AB29 /* YFPopUtils.h */,
 			);
 			path = YFPopView;
@@ -241,7 +247,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0940;
-				ORGANIZATIONNAME = "邹一帆";
+				ORGANIZATIONNAME = piu;
 				TargetAttributes = {
 					4C2B7C0D211293F000DAF29F = {
 						CreatedOnToolsVersion = 9.4.1;
@@ -348,6 +354,7 @@
 			files = (
 				4C2B7C2D2112944B00DAF29F /* PopViewController.m in Sources */,
 				4C2B7C3D2112A82500DAF29F /* PopLabelView.m in Sources */,
+				E94813BF23C5B0CB00CFB144 /* YFPopView+Common.m in Sources */,
 				4C2B7C21211293F200DAF29F /* main.m in Sources */,
 				E9B9DC8B23BF09920080DD4D /* YFPopView_mac.m in Sources */,
 				E9B9DC8E23BF09CF0080DD4D /* TAWeakProxy.m in Sources */,
@@ -362,6 +369,7 @@
 			files = (
 				E9B9DCA523C031630080DD4D /* TAWeakProxy.m in Sources */,
 				E9B9DCA723C031630080DD4D /* YFPopView.m in Sources */,
+				E94813C023C5B0D000CFB144 /* YFPopView+Common.m in Sources */,
 				E9B9DCA823C031630080DD4D /* YFPopView_mac.m in Sources */,
 				E9B9DC9F23BF0B1E0080DD4D /* main.m in Sources */,
 				E9B9DC9723BF0B190080DD4D /* AppDelegate.m in Sources */,
