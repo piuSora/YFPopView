@@ -101,6 +101,7 @@
 }
 
 - (void)executeAnimationIsShow:(BOOL)show{
+    self.animationView.frame = startFrame;
     NSString *keyPath;
     NSValue *fromValue,*toValue,*presentValue;
     NSString *animationKey = animationShowKey;
@@ -127,6 +128,7 @@
         toValue = [NSValue valueWithCATransform3D:CATransform3DIdentity];
     }
     if (!show) {
+        self.animationView.frame = endFrame;
         CGFloat ratio = 0;
         CALayer *presentLayer = self.animationView.layer.presentationLayer;
         if (!CGPointEqualToPoint(presentLayer.position, startFrame.origin)) {
@@ -146,7 +148,6 @@
         toValue = fromValue;
         fromValue = presentValue;
         realDuration = ratio * self.duration;
-        [self.animationView.layer removeAnimationForKey:animationShowKey];
         animationKey = animationRemoveKey;
     }
     CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:keyPath];
@@ -158,6 +159,7 @@
     animation.fillMode = kCAFillModeForwards;
     animation.repeatCount = 0;
     animation.removedOnCompletion = false;
+    [self.animationView.layer removeAllAnimations];
     [self.animationView.layer addAnimation:animation forKey:animationKey];
 }
 
@@ -188,8 +190,10 @@
 
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag{
     if ([anim isEqual:[self.animationView.layer animationForKey:animationShowKey]]) {
+        self.animationView.frame = endFrame;
         [self didShowCallBack];
     }else if([anim isEqual:[self.animationView.layer animationForKey:animationRemoveKey]]){
+        self.animationView.frame = startFrame;
         [self didRemove];
     }
 }

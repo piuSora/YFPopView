@@ -73,6 +73,9 @@
 #pragma mark - 展示
 
 - (void)showPopViewOn:(YF_VIEW *)view{
+    if (![self.gestureRecognizers containsObject:self.singleTap]) {
+        [self addGestureRecognizer:self.singleTap];
+    }
     if (self.adjustedKeyboardEnable) {
         [self registerForKeyboardNotifications];
     }
