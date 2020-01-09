@@ -5,6 +5,7 @@
 //  Copyright © 2018年 Piu. All rights reserved.
 //
 #import "YFPopView+Common.h"
+
 #if TARGET_OS_IPHONE || TARGET_OS_TV
 @interface YFPopView ()<UIGestureRecognizerDelegate>
 @property (nonatomic, strong) UITapGestureRecognizer  *singleTap;
@@ -14,7 +15,7 @@
 
 - (instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
-        superViewFrame = frame;
+        popViewFrame = frame;
         self.frame = frame;
         self.adjustedKeyboardEnable = false;
         self.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:1.0/3.0];
@@ -62,12 +63,12 @@
     CGSize keyboardSize = [value CGRectValue].size;
     
     [UIView animateWithDuration:duration animations:^{
-        self.frame = CGRectMake(self->superViewFrame.origin.x, self->superViewFrame.size.height - keyboardSize.height - self->superViewFrame.size.height, self->superViewFrame.size.width, self->superViewFrame.size.height);
+        self.frame = CGRectMake(self->popViewFrame.origin.x, self->popViewFrame.size.height - keyboardSize.height - self->popViewFrame.size.height, self->popViewFrame.size.width, self->popViewFrame.size.height);
     }];
     
 }
 - (void)keyboardWillBeHidden:(NSNotification*)aNotification{
-    [self setFrame:CGRectMake(0, 0, superViewFrame.size.width, self->superViewFrame.size.height)];
+    [self setFrame:CGRectMake(0, 0, popViewFrame.size.width, self->popViewFrame.size.height)];
 }
 
 #pragma mark - 展示

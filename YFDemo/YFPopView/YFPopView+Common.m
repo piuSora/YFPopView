@@ -53,10 +53,10 @@
     if (!self.superview) {
         [view addSubview:self];
     }
-    if (CGRectEqualToRect(CGRectZero, superViewFrame)) {
-        superViewFrame = view.bounds;
+    if (CGRectEqualToRect(CGRectZero, popViewFrame)) {
+        popViewFrame = view.bounds;
     }
-    self.frame = superViewFrame;
+    self.frame = popViewFrame;
     [self settingSubViewsWithAnimated:self.animatedEnable Duration:self.duration];
 }
 
@@ -82,37 +82,53 @@
         [self didShowCallBack];
     }
 }
-
+#if TARGET_OS_IPHONE || TARGET_OS_TV
 - (void)prepareAnimationFromTopToBottom{
     startFrame = CGRectMake(subViewFrame.origin.x, -subViewFrame.size.height, subViewFrame.size.width, subViewFrame.size.height);
     endFrame = subViewFrame;
 }
+- (void)prepareAnimationFromBottomToTop{
+    startFrame = CGRectMake(subViewFrame.origin.x, popViewFrame.size.height, subViewFrame.size.width, subViewFrame.size.height);
+    endFrame = subViewFrame;
+}
+#elif TARGET_OS_MAC
+- (void)prepareAnimationFromTopToBottom{
+    startFrame = CGRectMake(subViewFrame.origin.x, popViewFrame.size.height, subViewFrame.size.width, subViewFrame.size.height);
+    endFrame = subViewFrame;
+}
+- (void)prepareAnimationFromBottomToTop{
+    startFrame = CGRectMake(subViewFrame.origin.x, -subViewFrame.size.height, subViewFrame.size.width, subViewFrame.size.height);
+    endFrame = subViewFrame;
+}
+#endif
+
 - (void)prepareAnimationFromLeftToRight{
     startFrame = CGRectMake(- subViewFrame.size.width, subViewFrame.origin.y, subViewFrame.size.width, subViewFrame.size.height);
     endFrame = subViewFrame;
 }
 - (void)prepareAnimationFromRightToLeft{
-    startFrame = CGRectMake(superViewFrame.size.width, subViewFrame.origin.y, subViewFrame.size.width, subViewFrame.size.height);
+    startFrame = CGRectMake(popViewFrame.size.width, subViewFrame.origin.y, subViewFrame.size.width, subViewFrame.size.height);
     endFrame = subViewFrame;
 }
-- (void)prepareAnimationFromBottomToTop{
-    startFrame = CGRectMake(subViewFrame.origin.x, superViewFrame.size.height, subViewFrame.size.width, subViewFrame.size.height);
-    endFrame = subViewFrame;
-}
-
 - (void)executeAnimationIsShow:(BOOL)show{
-    self.animationView.frame = startFrame;
     NSString *keyPath;
     NSValue *fromValue,*toValue,*presentValue;
     NSString *animationKey = animationShowKey;
     NSTimeInterval realDuration = self.duration;
     yf_setAnchorPoint(self.animationView, CGPointMake(0, 0));
     if (self.animationStyle < 10) {
-        keyPath = @"position";
+        self.animationView.frame = startFrame;
+        if (startFrame.origin.y != endFrame.origin.y) {
+            keyPath = @"position";
+            fromValue = @(startFrame.origin);
+            toValue = @(endFrame.origin);
+        }else{
+            keyPath = @"position";
+            fromValue = @(startFrame.origin);
+            toValue = @(endFrame.origin);
+        }
         CGPoint presentPosition = self.animationView.layer.presentationLayer.position;
         presentValue = @(presentPosition);
-        fromValue = @(startFrame.origin);
-        toValue = @(endFrame.origin);
     }else if (self.animationStyle == YFPopViewAnimationStyleFade){
         keyPath = @"opacity";
         presentValue = @(self.animationView.layer.presentationLayer.opacity);
@@ -128,21 +144,19 @@
         toValue = [NSValue valueWithCATransform3D:CATransform3DIdentity];
     }
     if (!show) {
-        self.animationView.frame = endFrame;
         CGFloat ratio = 0;
         CALayer *presentLayer = self.animationView.layer.presentationLayer;
-        if (!CGPointEqualToPoint(presentLayer.position, startFrame.origin)) {
+        if (self.animationStyle < 10) {
+            self.animationView.frame = endFrame;
             CGPoint presentPosition = presentLayer.position;
             if (presentPosition.x != startFrame.origin.x) {
                 ratio = fabs(presentPosition.x - startFrame.origin.x) / fabs(endFrame.origin.x - startFrame.origin.x);
             }else{
                 ratio = fabs(presentPosition.y - startFrame.origin.y) / fabs(endFrame.origin.y - startFrame.origin.y);
             }
-        }
-        if (presentLayer.opacity != endAlpha) {
+        }else if (presentLayer.opacity != endAlpha) {
             ratio = presentLayer.opacity / endAlpha;
-        }
-        if (!CATransform3DEqualToTransform(presentLayer.transform, CATransform3DIdentity)) {
+        }else if (!CATransform3DEqualToTransform(presentLayer.transform, CATransform3DIdentity)) {
             ratio = [[presentLayer valueForKeyPath:@"transform.scale"] floatValue];
         }
         toValue = fromValue;
@@ -159,6 +173,7 @@
     animation.fillMode = kCAFillModeForwards;
     animation.repeatCount = 0;
     animation.removedOnCompletion = false;
+    self.animationView.layer.contentsCenter  = self.layer.presentationLayer.contentsCenter;
     [self.animationView.layer removeAllAnimations];
     [self.animationView.layer addAnimation:animation forKey:animationKey];
 }
@@ -169,6 +184,11 @@
     }else{
         [self didRemove];
     }
+}
+
+- (void)setFrame:(CGRect)frame{
+    [super setFrame:frame];
+    popViewFrame = frame;
 }
 
 - (void)didRemove{
@@ -190,10 +210,14 @@
 
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag{
     if ([anim isEqual:[self.animationView.layer animationForKey:animationShowKey]]) {
-        self.animationView.frame = endFrame;
+        if (self.animationStyle < 10) {
+            self.animationView.frame = endFrame;
+        }
         [self didShowCallBack];
     }else if([anim isEqual:[self.animationView.layer animationForKey:animationRemoveKey]]){
-        self.animationView.frame = startFrame;
+        if (self.animationStyle < 10) {
+            self.animationView.frame = startFrame;
+        }
         [self didRemove];
     }
 }

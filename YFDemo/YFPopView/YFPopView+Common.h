@@ -16,7 +16,7 @@ static NSString *animationRemoveKey = @"popview_remove";
 
 @interface YFPopView ()
 {
-    CGRect superViewFrame;
+    CGRect popViewFrame;
     CGRect subViewFrame;
     CGRect startFrame;
     CGRect endFrame;

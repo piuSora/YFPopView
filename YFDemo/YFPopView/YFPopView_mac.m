@@ -30,7 +30,7 @@
 
 - (instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
-        superViewFrame = frame;
+        popViewFrame = frame;
         self.frame = frame;
         self.wantsLayer = true;
         self.layer.backgroundColor = [NSColor colorWithRed:0 green:0 blue:0 alpha:0.7].CGColor;
