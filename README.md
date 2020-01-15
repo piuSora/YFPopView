@@ -4,7 +4,7 @@ iOS、macOS弹窗控件封装
 
 ## What For
 
-弹窗控件动画、逻辑封装，调用者仅需要对弹窗控件的展示view进行实现，无需关心动画、显示隐藏的逻辑
+弹窗控件动画、逻辑封装，调用者仅需要对弹窗控件的展示view进行实现，无需关心动画、显示、隐藏的逻辑
 
 ## Features
 
@@ -12,7 +12,7 @@ iOS、macOS弹窗控件封装
 * 支持autolayout、frame布局
 * 支持macOS、iOS
 * 支持OC、Swift
-* 可用于弹窗、toast、loadingHUD等需求，默认配置适用于大部分需求，
+* 可用于弹窗、toast、loadingHUD等需求，
 
 ![img](https://github.com/piuSora/YFPopView/blob/master/DisplayGif.gif)
 

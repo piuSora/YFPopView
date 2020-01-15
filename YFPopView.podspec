@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "YFPopView"
-  s.version      = "2.0.0"
+  s.version      = "3.0.0"
   s.summary      = "An Easy To Use Pop-up View Compoenment"
 
   # This description is used to generate tags and improve search results.
@@ -55,7 +55,7 @@ Pod::Spec.new do |s|
   #  profile URL.
   #
 
-  s.author             = { "ZYF" => "490639156@qq.com" }
+  s.author             = "ZYF"
   # Or just: s.author    = "OS"
   # s.authors            = { "OS" => "" }
   # s.social_media_url   = "http://twitter.com/OS"
@@ -71,7 +71,7 @@ Pod::Spec.new do |s|
 
   #  When using multiple platforms
   s.ios.deployment_target = "8.0"
-  # s.osx.deployment_target = "10.7"
+  s.osx.deployment_target = "10.7"
   # s.watchos.deployment_target = "2.0"
   # s.tvos.deployment_target = "9.0"
 
@@ -82,7 +82,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/piuSora/YFPopView.git", :tag => '2.0.0' }
+  s.source       = { :git => "https://github.com/piuSora/YFPopView.git", :tag => '3.0.0' }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -93,7 +93,7 @@ Pod::Spec.new do |s|
   #  Not including the public_header_files will make all headers public.
   #
 
-  s.source_files  = "YFDemo/YFDemo/YFPopView/*.{h,m}"
+  s.source_files  = "YFDemo/YFPopView/*.{h,m}"
 
   # s.public_header_files = "Classes/**/*.h"
 
