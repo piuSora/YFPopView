@@ -7,10 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <QuartzCore/QuartzCore.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface TAWeakProxy : NSProxy
+@interface TAWeakProxy : NSProxy <CAAnimationDelegate>
 
 @property (nonatomic, weak, readonly) id target;
 + (instancetype)weakProxyWithTarget:(id)target;
