@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "YFPopView"
-  s.version      = "3.0.0"
+  s.version      = "3.0.1"
   s.summary      = "An Easy To Use Pop-up View Compoenment"
 
   # This description is used to generate tags and improve search results.
@@ -82,7 +82,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/piuSora/YFPopView.git", :tag => '3.0.0' }
+  s.source       = { :git => "https://github.com/piuSora/YFPopView.git", :tag => '3.0.1' }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
