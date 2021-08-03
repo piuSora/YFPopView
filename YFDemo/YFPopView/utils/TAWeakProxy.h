@@ -11,7 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface TAWeakProxy : NSProxy <CAAnimationDelegate>
+@interface TAWeakProxy : NSProxy
 
 @property (nonatomic, weak, readonly) id target;
 + (instancetype)weakProxyWithTarget:(id)target;

@@ -9,6 +9,12 @@
 #import "YFPopView+Common.h"
 #import <QuartzCore/QuartzCore.h>
 
+@interface YFPopView ()
+
+@property (nonatomic, strong) id <UITableViewDelegate> s;
+
+@end
+
 @implementation YFPopView (Common)
 
 #pragma mark - callback
@@ -165,7 +171,7 @@
         animationKey = animationRemoveKey;
     }
     CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:keyPath];
-    animation.delegate = [TAWeakProxy weakProxyWithTarget:self];
+    animation.delegate = (id <CAAnimationDelegate>)[TAWeakProxy weakProxyWithTarget:self];
     animation.fromValue = fromValue;
     animation.toValue = toValue;
     animation.duration = realDuration;
@@ -216,7 +222,7 @@
         [self didShowCallBack];
     }else if([anim isEqual:[self.animationView.layer animationForKey:animationRemoveKey]]){
         if (self.animationStyle < 10) {
-            self.animationView.frame = startFrame;
+            self.animationView.frame = endFrame;
         }
         [self didRemove];
     }
